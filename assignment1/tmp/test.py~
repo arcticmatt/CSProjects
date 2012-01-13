@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+from random import random
+
+global h
+h=0
+count = 262144
+
+def makeList(n):
+    return [random() for i in xrange(n)]
+
+def average(l):
+    return sum(l) / len(l)
+
+def swap(l, i, j):
+    """swaps the ith and jth component of l"""
+    l[i], l[j] = l[j], l[i]
+
+def sortByAverage(l, lower, upper):
+    """Sorts the given list, l, for all elements with index i,
+    lower <= i <= upper"""
+    global h
+    elementCount = upper-lower
+    divisor = average(l)
+    upperBound = upper
+    lowerBound = lower
+    while (lowerBound < upperBound):
+        if (l[lowerBound] > divisor):
+            swap(l, lowerBound, upperBound)
+            upperBound -= 1
+        else:
+            lowerBound += 1
+    return lowerBound, upperBound
+
+def sort(l, lower, upper):
+    if (upper - lower > 1):
+        lowerb, upperb = sortByAverage(l, lower, upper)
+        sort(l, lower, upperb)
+        sort(l, lowerb, upper)
+
+l=makeList(4)
+sort(l, 0, 3)
+print l

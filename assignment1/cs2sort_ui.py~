@@ -1,0 +1,297 @@
+########################################################################
+# CS2 Assignment 1: Sorting in Python
+# 
+# This file defines a class SorterApplicationBase that implements a number
+# of useful interfaces. The class is capable of generating and storing
+# a list of random numbers and is capable of constructing a Tkinter
+# window enabling the user to visualise the sorting process.
+# 
+# Instances of the class also provide an interface to a list that is to
+# be sorted. List elements may be read, but not written, by subscripting
+# the instance. List elements may be swapped, given their indices, using
+# a provided public function.
+#
+# The student is tasked with writing a class member function that sorts
+# the list in place. The student is only to use the given member functions
+# to manipulate the list; the student is not to modify the list
+# directly. If implemented correctly, the student should be able to
+# verify the correctness of the implementation by clicking a button on
+# the Tkinter interface to initiate the animation process. The student
+# will do this in a separate file by modifying a class that inherits
+# from SorterApplicationBase.
+########################################################################
+
+########################################################################
+#
+# Original code copyright (c) 2011 Ben Yuan <byuan@caltech.edu>
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+########################################################################
+
+from Tkinter import *
+from random import random, shuffle, randint
+from collections import deque
+from copy import copy
+import time
+
+NUM_ELEMENTS = 128
+CANVAS_HEIGHT = 768
+CANVAS_WIDTH = 1024
+
+BAR_WIDTH = CANVAS_WIDTH // NUM_ELEMENTS
+
+SLOW_ANIMATION_DELAYMS = 200
+FAST_ANIMATION_DELAYMS = 17
+
+COLOR_DEFAULT = 'red'
+COLOR_SWAP = 'blue'
+COLOR_COMPARE = 'orange'
+
+
+class SorterApplicationBase:
+    """A class that encapsulates a list and provides sorting and visualization.
+    
+    This class is a base class and is missing the actual sorting functionality. 
+    Students are expected to modify a subclass that provides Sort and are not 
+    expected to modify this file (except maybe for provided constants).
+    
+    Public functions:
+        Sort(self):
+            sorts the encapsulated list.
+            to be implemented by student in subclass.
+        __init__(self, master):
+            initializes an instance of class;
+            called as SorterApplication(master).
+        __len__(self):
+            returns the length of the encapsulated list;
+            called as len(A), A being an instance of class.
+        __getitem__(self, index):
+            returns the value in list with given index;
+            called as A[index].
+        __iter__(self):
+            returns an iterator on encapsulated list;
+            autocalled in any context needing iterator.
+        Run(self):
+            sorts the encapsulated list and starts the animation.
+            expects to be called as a callback from Tk main loop.
+        RunFast(self):
+            sorts the encapsulated list and starts a faster animation.
+            expects to be called as a callback from Tk main loop.
+        TimedRun(self, length):
+            times the user-defined sort method on a list of given length,
+            without generating animation data.
+            can be called in any (?) context.
+        Scramble(self):
+            stops any running animation and generates a new random list to sort.
+            expects to be called as a callback from Tk main loop.
+        UpdateCanvas(self):
+            redraws the visualizer canvas.
+            expects Tk main loop to be running.
+        AnimateStep(self):
+            steps the animation by one frame.
+            calls itself after delay for next frame; stops if no frames left.
+            expects Tk main loop to be running.
+        Swap(self, a, b):
+            swaps two items in the encapsulated list,
+            and registers an animation frame.
+    
+    Non-public functions:
+        _Run(self):
+            calls the correct functions to sort and run the animation.
+        
+    """
+    
+    def Sort(self):
+        """Sorts the encapsulated list.
+        
+        To be implemented by student in subclass.
+        
+        """
+        pass
+        
+    def Swap(self, a, b):
+        """Swaps two items in the encapsulated list and queues an animation frame.
+        
+        Arguments:
+        a, b: indexes of elements to swap.
+        
+        """
+        self.numbers[a], self.numbers[b] = self.numbers[b], self.numbers[a]
+        self.op_counter += 1
+        if self.animation_enabled:
+            self.move_queue.append((a, b, COLOR_SWAP))
+        
+    def Compare(self, a, b):
+        """Compares two items in the encapsulated list and queues an animation frame.
+        
+        Arguments:
+        a, b: indexes of elements to compare.
+        
+        Return values:
+        single integer
+           less than 0 if a < b,
+           equal to 0 if a = b,
+           greater than 0 if a > b.
+           
+        """
+        if self.animation_enabled:
+            self.move_queue.append((a, b, COLOR_COMPARE))
+        self.op_counter += 1
+        return self.numbers[a] - self.numbers[b]
+    
+    def __init__(self, master=None):
+        """Initializes the SorterApplication.
+        
+        Arguments:
+        master - the parent Tk object (typically root).
+        
+        Notes:
+        If no master is provided, then the UI is not initialized, and bad things 
+        can happen if UI-related member functions are subsequently called.
+        
+        """
+        self.master = master
+        self.numbers = [random() for i in range(NUM_ELEMENTS)]
+        self.numbers_display = copy(self.numbers)
+        self.move_queue = deque()
+        self.animation_delay = SLOW_ANIMATION_DELAYMS
+        self.animation_enabled = True
+        
+        self.op_counter = 0
+        
+        self.ui = False
+        
+        if master:
+            self.ui = True
+            frame = Frame(master)
+            frame.pack()
+            
+            self.canvas = Canvas(frame,height=CANVAS_HEIGHT,width=CANVAS_WIDTH,bg="white")
+            self.UpdateCanvas()
+            self.canvas.pack()
+            
+            subframe = Frame(frame)
+            subframe.pack()
+            
+            self.go_button = Button(subframe,text="Go",command=self.Run)
+            self.go_button.pack(side=LEFT)
+            self.gofast_button = Button(subframe,text="GO!!",command=self.RunFast)
+            self.gofast_button.pack(side=LEFT)
+            self.reset_button = Button(subframe,text="Reset",command=self.Scramble)
+            self.reset_button.pack(side=LEFT)
+        
+    def __len__(self):
+        """Returns the length of the encapsulated list."""
+        return len(self.numbers)
+    
+    def __getitem__(self, key):
+        """Returns the indexed item in the encapsulated list."""
+        return self.numbers[key]
+        
+    def __iter__(self):
+        """Returns an iterator over the encapsulated list."""
+        return iter(self.numbers)
+        
+    def Run(self):
+        """Runs the animation at a slow speed."""
+        self.animation_delay = SLOW_ANIMATION_DELAYMS
+        self._Run()
+        
+    def RunFast(self):
+        """Runs the animation at a fast speed."""
+        self.animation_delay = FAST_ANIMATION_DELAYMS
+        self._Run()
+        
+    def TimedRun(self, length=NUM_ELEMENTS):
+        """Times the student-defined sort function.
+        
+        Arguments:
+        length: length of list to sort (can be large).
+        
+        Return values:
+            2-tuple
+                0: the time in seconds that self.Sort took on list of given length.
+                1: the total number of compares and swaps used.
+        
+        """
+        tmp = self.numbers
+        self.animation_enabled = False
+        self.numbers = [random() for i in range(length)]
+        self.op_counter = 0
+        
+        start = time.clock()
+        self.Sort()
+        elapsed = time.clock() - start
+        
+        self.move_queue = deque()
+        self.numbers = tmp
+        self.animation_enabled = True
+        
+        return (elapsed, self.op_counter)
+        
+    def _Run(self):
+        """Runs the animation at the currently set animation speed."""
+        if self.ui:
+            self.go_button['state'] = DISABLED
+            self.gofast_button['state'] = DISABLED
+        self.op_counter = 0
+        self.Sort()
+        self.AnimateStep()
+        
+    def Scramble(self):
+        """Resets the encapsulated list and stops running animation."""
+        self.numbers = [random() for i in range(NUM_ELEMENTS)]
+        self.numbers_display = copy(self.numbers)
+        self.move_queue = deque()
+        if self.ui:
+            self.UpdateCanvas()
+            self.go_button['state'] = NORMAL
+            self.gofast_button['state'] = NORMAL
+        
+    def UpdateCanvas(self, swap=(None, None, None)):
+        """Refreshes the canvas.
+        
+        Arguments:
+        swap: a 2-tuple with indexes of rectangles to highlight (e.g. items swapped)
+        
+        """
+        if self.ui:
+            self.canvas.addtag_all("t")
+            self.canvas.delete("t")
+            for i in range(NUM_ELEMENTS):
+                self.canvas.create_rectangle(i*BAR_WIDTH,CANVAS_HEIGHT,(i+1)*BAR_WIDTH-1,CANVAS_HEIGHT-(CANVAS_HEIGHT*self.numbers_display[i]),fill=(swap[2] if i in swap else COLOR_DEFAULT),outline="")
+            
+    def AnimateStep(self):
+        """Runs an animation frame, scheduling the next one if available."""
+        if self.ui:
+            m = (None, None, None)
+            try:
+                m = self.move_queue.popleft()
+                if m[2] == COLOR_SWAP:
+                    self.numbers_display[m[0]], self.numbers_display[m[1]] = self.numbers_display[m[1]], self.numbers_display[m[0]]
+                self.master.after(self.animation_delay, self.AnimateStep)
+            except IndexError:
+                self.go_button['state'] = NORMAL
+                self.gofast_button['state'] = NORMAL
+            self.UpdateCanvas(m)
