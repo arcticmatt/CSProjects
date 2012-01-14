@@ -1,0 +1,72 @@
+!SESSION 2012-01-12 23:28:51.632 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_22
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.028
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Building.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.088
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Explosion.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.140
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameController$1.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.191
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameController.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.242
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameDisplay.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.294
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameLogic.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.345
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameState.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.397
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Missile.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.448
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._MissileCommandApplet.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.500
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._MissileCommandApplication.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:18.551
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Scoreboard.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:19.551
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Scoreboard.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:19.602
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._MissileCommandApplet.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:19.653
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameLogic.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:19.704
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameController$1.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:19.756
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Missile.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:19.961
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Explosion.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:20.012
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._Building.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:20.063
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameController.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:20.114
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameDisplay.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:20.216
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._MissileCommandApplication.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor
+
+!ENTRY org.eclipse.jdt.core 2 0 2012-01-12 23:33:20.422
+!MESSAGE The Java indexing could not index /Vector2DGame/classes/._GameState.class. This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor

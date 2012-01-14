@@ -1,0 +1,49 @@
+/**
+ *
+ * @author josephg
+ */
+public class Main {
+
+  /**
+   * Creates a new instance of Main.
+   **/
+  public Main() {
+  }
+
+  /**
+   * The main method.
+   * 
+   * @param args the command line arguments
+   */
+  
+  public static void p(String output) {
+	  //prints the output to stdout
+	  System.out.println(output);
+  }
+  
+  public static void main(String[] args) {
+	// TODO code application logic here
+	  System.out.println("Hello World");
+
+	  // Testing Addition:
+	  Vector2D a = new Vector2D(1,2);
+	  Vector2D b = new Vector2D(3,4);
+	  System.out.println("The initial value of a: " + a);
+	  System.out.println("The initial value of b: " + b);
+	  a.add(b);
+	  System.out.println("The final value of a: " + a);
+	  System.out.println("The final value of b: " + b);
+	  p("Distance = " + a.distanceTo(b));
+	  p("a's magnitude = " + a.magnitude());
+	  p("b's magnitude = " + b.magnitude());
+	  p("dot product = " + a.dot(b));
+	  p("b - a = " + b.subtract(a));
+	  p("b = " + b);
+	  p("Setting b = <5,42>");
+	  b.setIComp(5);
+	  b.setJComp(42);
+	  p("now, b = " + b);
+	  
+	  
+  }
+}

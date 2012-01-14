@@ -1,0 +1,34 @@
+/**
+ *
+ * @author josephg
+ */
+public class Main {
+
+  /**
+   * Creates a new instance of Main.
+   **/
+  public Main() {
+  }
+
+  /**
+   * The main method.
+   * 
+   * @param args the command line arguments
+   */
+  public static void main(String[] args) {
+	// TODO code application logic here
+	  System.out.println("Hello World");
+
+	  // Testing Addition:
+	  Vector2D a = new Vector2D(1,2);
+	  Vector2D b = new Vector2D(3,4);
+	  System.out.println("The initial value of a: " + a);
+	  System.out.println("The initial value of b: " + b);
+	  a.add(b);
+	  System.out.println("The final value of a: " + a);
+	  System.out.println("The final value of b: " + b);
+
+	  // Test other methods...
+  }
+
+}

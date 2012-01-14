@@ -3,14 +3,18 @@
  * A class to represent two dimensional vectors with integer components.
  */
 public class Vector2D {
-  // TODO: Add instance variables and fill in constructors and methods below.
-
-  /**
-   * Creates a new Vector2D with zero magnitude.
-   */
-  public Vector2D() {
-    // TODO: Fill in this constructor.
-  }
+	//i,j represent the i / j components of the vector.
+	private int i, j;
+	/**
+	 * Creates a new Vector2D with zero magnitude.
+	 */
+	public Vector2D() {
+		/* A zero magnitude vector means its components
+		 * are all 0.
+		 */
+		i = 0;
+		j = 0;
+	}
 
 
   /**
@@ -20,7 +24,8 @@ public class Vector2D {
    * @param j The initial j component of the new Vector2D.
    */
   public Vector2D(int i, int j) {
-    // TODO: Fill in this constructor.
+    this.i = i;
+    this.j = j;
   }
 
   /**
@@ -31,8 +36,12 @@ public class Vector2D {
    * @return The resulting Vector2D (this).
    */
   public Vector2D add(Vector2D v) {
-    // TODO: Fill in this stub.
-    return null;
+	  int newI = v.getIComp() + getIComp();
+	  int newJ = v.getJComp() + getJComp();
+	  //get the new component values & set them.
+	  setIComp(newI);
+	  setJComp(newJ);
+	  return this;
   }
 
   /**
@@ -43,8 +52,12 @@ public class Vector2D {
    * @return The resulting Vector2D (this).
    */
   public Vector2D subtract(Vector2D v) {
-    // TODO: Fill in this stub.
-    return null;
+    int newI = getIComp() - v.getIComp();
+    int newJ = getJComp() - v.getJComp();
+    //get the new component values and set them.
+    setIComp(newI);
+    setJComp(newJ);
+    return this;
   }
 
   /**
@@ -54,8 +67,8 @@ public class Vector2D {
    * @return The dot product betweeen this and v.
    */
   public int dot(Vector2D v) {
-    // TODO: Fill in this stub.
-    return 0;
+	  //dot product = sum of products of components of vectors
+	  return (getIComp()*v.getIComp() + getJComp()*v.getJComp());
   }
 
   /**
@@ -66,13 +79,13 @@ public class Vector2D {
    * @return The Euclidean distance between this and v.
    */
   public double distanceTo(Vector2D v) {
-    /*
-     * TODO: Fill in this stub.
-     * You will probably need the static Math.sqrt method. Consult the Java
-     * API Specification for more information:
-     * http://docs.oracle.com/javase/6/docs/api/java/lang/Math.html
-     */
-    return 0;
+	  int deltaI = getIComp() - v.getIComp();
+	  int deltaJ = getJComp() - v.getJComp();
+	  /* By the pythagorean theorem, distance = 
+	   * sqrt(|i0 - i1|^2 + |j0 - j1|^2)
+	   */
+	  double distanceSquared = (double)(deltaI*deltaI + deltaJ*deltaJ);
+	  return Math.sqrt(distanceSquared);
   }
 
   /**
@@ -81,8 +94,11 @@ public class Vector2D {
    * @return The magnitude of this Vector2D.
    */
   public double magnitude() {
-    // TODO: Fill in this stub.
-    return 0;
+    /* The magnitude of a 2D vector = sqrt(i^2 + j^2)
+     */
+	double magnitudeSquared = (double)(getIComp()*getIComp() + 
+			getJComp()*getJComp());
+	return Math.sqrt(magnitudeSquared);
   }
 
   /**
@@ -91,8 +107,7 @@ public class Vector2D {
    * @return The i component.
    */
   public int getIComp() {
-    // TODO: Fill in this stub.
-    return 0;
+	  return this.i;
   }
 
   /**
@@ -101,8 +116,7 @@ public class Vector2D {
    * @return The j component.
    */
   public int getJComp() {
-    // TODO: Fill in this stub.
-    return 0;
+	  return this.j;
   }
 
   /**
@@ -111,7 +125,7 @@ public class Vector2D {
    * @param i The value to which the i component will be set.
    */
   public void setIComp(int i) {
-    // TODO: Fill in this stub.
+    this.i = i;
   }
 
   /**
@@ -120,7 +134,7 @@ public class Vector2D {
    * @param j The value to which the j component will be set.
    */
   public void setJComp(int j) {
-    // TODO: Fill in this stub.
+    this.j = j;
   }
 
   /**
@@ -129,11 +143,6 @@ public class Vector2D {
    * @return A String of the form "<i, j>"
    */
   public String toString() {
-    /*
-     * TODO: Fill in this stub.
-     * HINT: If this were a 1 dimensional vector we would write
-     * return "<" + i + ">";
-     */
-    return null;
+    return String.format("<%d, %d>", i, j);
   }
 }
