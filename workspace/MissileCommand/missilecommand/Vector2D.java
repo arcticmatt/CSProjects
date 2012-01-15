@@ -1,4 +1,5 @@
 package missilecommand;
+
 /**
  * A class to represent two dimensional vectors with integer components.
  */

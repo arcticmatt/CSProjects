@@ -1,0 +1,53 @@
+/*
+ * MissileCommandApplication.java
+ * Provides the missile command game as a stand-alone application.
+ *
+ * Author:        Joseph Gonzalez
+ * Modified by:   Brian Emre Aydemir
+ */
+package missilecommand;
+
+import java.awt.BorderLayout;
+import java.awt.GraphicsDevice;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+/**
+ * Implements the missile command game as a stand-alone application.
+ *
+ * @author Joseph Gonzalez, Brian Emre Aydemir
+ **/
+public class MissileCommandApplication extends JFrame {
+
+  /**
+   * Creates and shows a new missile command game display.  When the
+   * display (frame) is closed, the JVM will exit.
+   **/
+  public MissileCommandApplication() {
+    super("CS2 Missile Command");
+    JPanel screenContents = new JPanel(new BorderLayout());
+    GameDisplay display = new GameDisplay(640, 480);
+    Scoreboard scoreboard = new Scoreboard();
+
+    screenContents.add(scoreboard, BorderLayout.NORTH);
+    screenContents.add(display, BorderLayout.CENTER);
+    getContentPane().add(screenContents);
+
+    setResizable(false);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    pack();
+    setVisible(true);
+
+    GameLogic logic = new GameLogic();
+    GameController control =
+      new GameController(display, scoreboard, logic, 40);
+    control.startGame();
+  }
+
+  /** Runs the missile command application.  The arguments are ignored. **/
+  public static void main(String[] args) {
+    MissileCommandApplication ignored = new MissileCommandApplication();
+    System.out.println("test");
+  }
+
+}

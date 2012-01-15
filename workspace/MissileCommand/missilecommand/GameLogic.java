@@ -203,12 +203,54 @@ public class GameLogic {
     state.power = 1.0F;
   }
 
+  private boolean buildingsTouching(Building b1, Building b2) {
+	  /* Returns whether the given buildings are touching */
+	  Vector2D topLeft1 = b1.getTopLeft();
+	  Vector2D topLeft2 = b2.getTopLeft();
+	  Vector2D bottomRight1 = b1.getBottomRight();
+	  Vector2D bottomRight2 = b2.getBottomRight();
+	  /* b1 and b2 are touching if and only if the following 
+	   * condition is satisfied:
+	   */
+	  if ()
+	  
+  }
+  
+  /** Returns whether the given building can be added to the game
+   */
+  
+  private boolean canAddBuilding(Building b, GameState state) {
+	  /* First, check that the vectors defining the building are inside 
+	   * the map.
+	   */
+	  if (b.getBottomRight().getIComp() > state.worldWidth || 
+		b.getTopLeft().getIComp() < 0 || b.getBottomRight().getJComp() >
+	  	state.worldHeight || b.getTopLeft().getIComp() < 0) {
+		  return false;
+	  }
+	  for (Building i : state.buildings) {
+		  i.
+	  }
+		 
+  }
+  
   /** Adds buildings to the game (as defined by the state object). **/
+  
   private void initializeSkyLine(GameState state) {
     // TODO: add code to create a "skyline" here.
-
+	  Vector2D topLeft, bottomRight; // declare variables.
+	  Building newBuilding;
+	  topLeft = new Vector2D(0, 100); // initialize points.
+	  bottomRight = new Vector2D(100,0);
+	  newBuilding = new Building(topLeft, bottomRight); // create the building.
+	  state.buildings.add(newBuilding); // add your new building to the linked list.
+	  for (Building i : state.buildings) {
+		  System.out.println(i.getTopLeft());
+	  }
   }
 
+  
+  
   /** Returns true if and only if the game is over. **/
   public boolean isGameOver(GameState state) {
     // TODO: Change this to end the game at an opportune time.
