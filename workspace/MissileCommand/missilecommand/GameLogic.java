@@ -26,11 +26,15 @@ public class GameLogic {
   public final static int MAX_VEL = 10;
 
   /** Power regeneration rate. **/
-  public final static float POWER_REGEN = .005F;
+  public final static float POWER_REGEN = .01F;
 
   /** Power loss rate (per click). **/
-  public final static float POWER_HIT = .01F;
+  public final static float POWER_HIT = .05F;
 
+  /* Counts the number of cycles; used to create missiles*/
+  private int cycleCount = 0;
+
+  
   /**
    * Random number generator.
    * Defaults to a generator seeded with the current time.
@@ -74,7 +78,8 @@ public class GameLogic {
           location.getIComp() > state.worldWidth)
       {
         // Missile went off the left or right edge of the screen.
-        missiles.remove();
+        //missiles.remove();
+    	m.getVelocity().setIComp(-m.getVelocity().getIComp());
       }
       else if (location.getJComp() < 0)
       {
@@ -98,11 +103,33 @@ public class GameLogic {
       }
     }
   }
-
+  
+  /** Initiates one missile at a random location **/
+  private void makeMissile(GameState state) {
+		int X = gen.nextInt(state.worldWidth); 
+  		int Y = state.worldHeight;
+  		int xVelocity = 10 - gen.nextInt(20);
+  		int yVelocity = -gen.nextInt(2) - 1;
+  		Vector2D location = new Vector2D(X, Y);
+  		Vector2D velocity = new Vector2D(xVelocity, yVelocity);
+  		Missile missile = new Missile(location, velocity);
+  		state.missiles.add(missile);	  
+  }
+  
+  
   /** Adds missiles to the game (as defined by the state object). **/
   private void createMissiles(GameState state) {
-    // TODO: add code here to create missiles.
-
+	  	cycleCount++;
+	  	if (cycleCount % 20 == 0) {
+	  		/* Every 20 cycles, we initiate:
+	  		 * (x/1000)+2 missiles, where x = cycleCount.
+	  		 */
+	  		int missileCount = (cycleCount / 1000) + 2;
+	  		for (int i = 0; i < missileCount; i++) {
+	  			makeMissile(state);
+	  		}
+	  	}
+  
 
   }
 
@@ -118,7 +145,19 @@ public class GameLogic {
     while (clicks.hasNext()) {
       Vector2D c = (Vector2D)clicks.next();
       clicks.remove();
-
+      /* If it's not a left click, drop a nuke */
+      if (c.getType() != 1) {
+    	  /* if we don't have any more nukes, don't do anything. */
+    	  if (!state.hasNuke()) {
+    		  continue;
+    	  }
+    	  /* Otherwise, drop the massive explosion */
+    	  state.useNuke();
+    	  state.explosions.add(new Explosion(c, 300, 10));
+    	  state.power -= 0.2F;
+    	  continue;
+      }
+      
       // Used to indicate if c should create an explosion or not.
       isExplosionClick = true;
 
@@ -126,10 +165,10 @@ public class GameLogic {
       for(Building b : state.buildings) {
         if (b.isInterior(c)) {
           // Clicked inside a building.
-          // TODO: Possibly make this a bit more interesting.
+          state.power -=  0.1F;
 
-          // Don't create an explosion by clicking on a building.
-          isExplosionClick = false;
+          // Do create an explosion by clicking on a building.
+          isExplosionClick = true;
         }
       }
 
@@ -170,9 +209,16 @@ public class GameLogic {
         while (missiles.hasNext()) {
           Missile m = (Missile)missiles.next();
           if (e.intersects(m)) {
-            // Explosion intersects a missile.
-            // TODO: make something interesting happen here.
-
+        	  Vector2D location = m.getLocation();
+        	  Message msg = new Message("+69", location.getIComp(), state.worldHeight - location.getJComp(), 20);
+        	  state.messages.add(msg);
+        	  /* If it intersects the missile, the missile dies;
+        	   * we'll remove it.
+        	   */
+        	  missiles.remove();
+        	  //Whenever a missile dies, increment the score by 69
+        	  state.incrementScore(69);
+        	  
           }
         }
 
@@ -181,10 +227,13 @@ public class GameLogic {
         while (buildings.hasNext()) {
           Building b = (Building)buildings.next();
           if (e.intersects(b)) {
-            // Explosion intersects a building.
-            // TODO: make something interesting happen here.
-
-
+        	  /* Damage the building, and if the building is out
+        	   * of health, remove it.
+        	   */
+        	  b.damage();
+        	  if (b.isDestroyed()) {
+        		  buildings.remove();
+        	  }
           }
         }
       }
@@ -202,50 +251,40 @@ public class GameLogic {
     initializeSkyLine(state);
     state.power = 1.0F;
   }
-
-  private boolean buildingsTouching(Building b1, Building b2) {
-	  /* Returns whether the given buildings are touching */
-	  Vector2D topLeft1 = b1.getTopLeft();
-	  Vector2D topLeft2 = b2.getTopLeft();
-	  Vector2D bottomRight1 = b1.getBottomRight();
-	  Vector2D bottomRight2 = b2.getBottomRight();
-	  /* b1 and b2 are touching if and only if the following 
-	   * condition is satisfied:
-	   */
-	  if ()
-	  
-  }
   
-  /** Returns whether the given building can be added to the game
-   */
+  /** Initializes a row of buildings with the given width, height, and Y.
+   * Distances between buildings are chosen randomly. **/
   
-  private boolean canAddBuilding(Building b, GameState state) {
-	  /* First, check that the vectors defining the building are inside 
-	   * the map.
-	   */
-	  if (b.getBottomRight().getIComp() > state.worldWidth || 
-		b.getTopLeft().getIComp() < 0 || b.getBottomRight().getJComp() >
-	  	state.worldHeight || b.getTopLeft().getIComp() < 0) {
-		  return false;
+  private void initializeBuildingRow(GameState state, int buildingWidth, 
+		  int buildingHeight, int Y) {
+	  int X = 0;
+	  while (X < state.worldWidth - buildingWidth) {
+		  //Initialize the vectors representing corners of the new building
+		  Vector2D topLeft, bottomRight;
+		  Building newBuilding;
+		  topLeft = new Vector2D(X, Y + buildingHeight); // initialize points.
+		  bottomRight = new Vector2D(X + buildingWidth, Y);
+		  newBuilding = new Building(topLeft, bottomRight); // create the building.
+		  state.buildings.add(newBuilding); // add your new building to the linked list.
+		  //Now set the distance between this and the next building to be random
+		  X += buildingWidth + gen.nextInt(buildingWidth);
+		  
 	  }
-	  for (Building i : state.buildings) {
-		  i.
-	  }
-		 
   }
   
   /** Adds buildings to the game (as defined by the state object). **/
   
   private void initializeSkyLine(GameState state) {
-    // TODO: add code to create a "skyline" here.
-	  Vector2D topLeft, bottomRight; // declare variables.
-	  Building newBuilding;
-	  topLeft = new Vector2D(0, 100); // initialize points.
-	  bottomRight = new Vector2D(100,0);
-	  newBuilding = new Building(topLeft, bottomRight); // create the building.
-	  state.buildings.add(newBuilding); // add your new building to the linked list.
-	  for (Building i : state.buildings) {
-		  System.out.println(i.getTopLeft());
+	  /* the width / height of our buildings */
+	  int buildingWidth = 40;
+	  int buildingHeight = 30;
+	  //number of rows.
+	  int rowCount = 3;
+	  //Now we'll initialize rows
+	  for (int i = 0; i < rowCount; i++) {
+		  //The distance between consecutive rows is buildingHeight
+		  int Y = i * 2 * buildingHeight;
+		  initializeBuildingRow(state, buildingWidth, buildingHeight, Y);
 	  }
   }
 
@@ -253,9 +292,11 @@ public class GameLogic {
   
   /** Returns true if and only if the game is over. **/
   public boolean isGameOver(GameState state) {
-    // TODO: Change this to end the game at an opportune time.
-
-    return false;
+	  /* if there aren't any more buildings, the game is over */
+	  if (state.buildings.size() == 0) {
+		  return true;
+	  }
+	  return false;
   }
 
 }

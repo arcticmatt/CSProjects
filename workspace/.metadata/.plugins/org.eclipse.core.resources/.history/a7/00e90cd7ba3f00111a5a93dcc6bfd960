@@ -1,0 +1,227 @@
+/*
+ * GameDisplay.java
+ * Implements the main display area for Missile Command.
+ *
+ * Author:        Joseph Gonzalez
+ * Modified by:   Brian Emre Aydemir
+ */
+package missilecommand;
+import javax.imageio.*;
+
+import java.awt.*;
+import java.awt.image.*;
+import java.util.*;
+import javax.swing.*;
+import java.io.*;
+
+/**
+ * Implements the main display area for Missile Command.  The display is
+ * stateless in that it does not keep track of the game state.  Thus, the
+ * state must be passed to the display in order to update its display.
+ **/
+@SuppressWarnings("serial")
+public class GameDisplay extends JComponent {
+
+  /**
+   * The rate at which the display is faded.  This creates the illusion of
+   * missile streaks rather easily.  The value is in the range 0 to 255.
+   **/
+  public final static int FADE_RATE = 1<<5;
+
+  /** The width of the display (in pixels). **/
+  private int width;
+
+  /** The height of the display (in pixels). **/
+  private int height;
+
+  /**
+   * The display's image is first drawn to this buffer, in effect giving us
+   * double buffering and reducing flicker.  Should never be null.
+   **/
+  private BufferedImage buffer;
+  private BufferedImage background = loadBackground();
+  /**
+   * Creates a new instance with the specified width and height (in
+   * pixels).
+   **/
+  
+  private BufferedImage loadBackground() {
+	  /* Loads the background image and returns it
+	   * as an image
+	   */
+	  String filename = "missilecommand/space.jpg";
+	  /* I got the image from "http://upload.wikimedia.org/wikipedia/commons/2/2f/Hubble_ultra_deep_field.jpg" */
+	  try {
+		  File file = new File(filename);
+		  return ImageIO.read(file);
+	  }
+	  catch (IOException e) {
+		  System.out.println("Failed to load background image");
+		  return null;
+	  }
+  }
+  
+  public GameDisplay(int width, int height) {
+    this.width = width;
+    this.height = height;
+    setPreferredSize(new Dimension(width, height));
+    setOpaque(true);
+    setDoubleBuffered(false);
+
+    buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+    Graphics g = buffer.getGraphics();
+    g.setColor(Color.BLACK);
+    g.fillRect(0, 0, width, height);
+  }
+
+  /** Returns the dimensions of the display, in pixels. **/
+  public Dimension getSize() { return new Dimension(width,height); }
+
+  /** Returns the width of the display, in pixels. **/
+  public int getWidth() { return width; }
+
+  /** Returns the height of the display, in pixels. **/
+  public int getHeight() { return height; }
+
+  /** Paints the display using the specified Graphics object.  **/
+  public void paintComponent(Graphics g) {
+    // Need to make sure we don't modify g in any way.
+    Graphics graphics = g.create();
+    synchronized (buffer) {
+      // Only one thread should access the buffer's Graphics object...
+      graphics.drawImage(buffer, 0, 0, this);
+    }
+  }
+  
+  public void paintBackground(Graphics g) {
+	  /* Paints the background */
+	  if (background != null) {
+		  g.drawImage(background, 0, 0, null);
+	  }
+  }
+
+  int yes = 0;
+  
+  public void paintMessage(Graphics g) {
+	  if (yes == 1) {
+		  return;
+	  }
+	  Color c = new Color(100,100,100);
+	  g.setColor(c);
+	  char[] x = "lolwut".toCharArray();
+	  g.drawChars(x, 0, 5, 100,100);
+	  yes++;
+  }
+  
+  /**
+   * Updates the display by using the provided (non-null) state object to
+   * draw the current set of buildings, explosions, and missiles.
+   **/
+  public void update(GameState state) {
+    Graphics graphics = null;
+    synchronized (buffer) {
+      // Only one thread should access the buffer's Graphics object...
+      graphics = buffer.getGraphics();
+    }
+    paintBackground(graphics);
+    paintBuildings(state.buildings.iterator(),  graphics);
+    paintMissiles(state.missiles.iterator(), graphics);
+    paintExplosions(state.explosions.iterator(), graphics);
+    paintMessage(graphics);
+    fadeBuffer(graphics);
+  }
+
+  /**
+   * Draws a semitransparent black box the size of this display with the
+   * provided Graphics object.  The top left of the box is at (0,0) with
+   * respect to the graphics coordinate system.
+   **/
+  private void fadeBuffer(Graphics g) {
+    g.setColor(new Color(0,0,0,FADE_RATE));
+    g.fillRect(0,0,width,height);
+  }
+
+  /**
+   * Paint all the buildings using the provided Graphics object.  Assumes
+   * that every object returned by the Iterator is a {@link Building}.
+   **/
+  private void paintBuildings(Iterator iter, Graphics graphics) {
+
+    Vector2D topLeftPoint, bottomRightPoint;
+    int topLeftXPix, topLeftYPix, bottomRightXPix, bottomRightYPix;
+    int buildingWidth, buildingHeight;
+    Color buildingColor;
+
+    while(iter.hasNext()) {
+      Building b = (Building)iter.next();
+
+      buildingColor = new Color(1.0F-b.getHealth(), b.getHealth(), 0.0F);
+      graphics.setColor(buildingColor);
+
+      topLeftPoint = b.getTopLeft();
+      topLeftXPix = topLeftPoint.getIComp();
+      topLeftYPix = height - topLeftPoint.getJComp();
+
+      bottomRightPoint = b.getBottomRight();
+      bottomRightXPix = bottomRightPoint.getIComp();
+      bottomRightYPix = height - bottomRightPoint.getJComp();
+
+      buildingWidth = bottomRightXPix - topLeftXPix;
+      buildingHeight = bottomRightYPix - topLeftYPix;
+
+      graphics.fillRect
+      (topLeftXPix, topLeftYPix, buildingWidth, buildingHeight);
+    }
+  }
+
+  /**
+   * Paint all the missiles using the provided Graphics object.  Assumes
+   * that every object returned by the Iterator is a {@link Missile}.
+   **/
+  private void paintMissiles(Iterator iter, Graphics graphics) {
+    Vector2D location;
+    int x, y, size;
+
+    while(iter.hasNext()) {
+      Missile m = (Missile)iter.next();
+      location = m.getLocation();
+      size = m.getSize();
+      x = location.getIComp();
+      y = height - location.getJComp();
+
+      float hue =
+        (float)(m.getExplosionSize()) /
+        (Missile.MAX_EXPLOSION_SIZE + Missile.MIN_EXPLOSION_SIZE);
+
+      graphics.setColor(new Color(1.0F, 1.0F - hue, 0.0F));
+      graphics.fillOval(x, y, size, size);
+    }
+  }
+
+  /**
+   * Paint all the explosions using the provided Graphics object.  Assumes
+   * that every object returned by the Iterator is an {@link Explosion}.
+   **/
+  private void paintExplosions(Iterator iter, Graphics graphics) {
+    int currentRadius;
+    Vector2D location;
+    Color explosionColor;
+
+    while(iter.hasNext()) {
+      Explosion e = (Explosion) iter.next();
+
+      float hue = ((float)e.getCurrentRadius()) / e.getMaxRadius();
+      graphics.setColor(new Color(1.0F, hue, 0.0F));
+
+      currentRadius = e.getCurrentRadius();
+      location = e.getLocation();
+
+      graphics.fillOval
+      (location.getIComp() - currentRadius,
+          height - location.getJComp() - currentRadius,
+          currentRadius * 2,
+          currentRadius * 2);
+    }
+  }
+
+}

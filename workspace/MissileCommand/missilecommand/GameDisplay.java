@@ -6,11 +6,14 @@
  * Modified by:   Brian Emre Aydemir
  */
 package missilecommand;
+import javax.imageio.*;
 
 import java.awt.*;
 import java.awt.image.*;
 import java.util.*;
 import javax.swing.*;
+import java.io.*;
+import java.util.Random;
 
 /**
  * Implements the main display area for Missile Command.  The display is
@@ -20,6 +23,9 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class GameDisplay extends JComponent {
 
+	
+	private Random gen = new Random();
+	
   /**
    * The rate at which the display is faded.  This creates the illusion of
    * missile streaks rather easily.  The value is in the range 0 to 255.
@@ -32,16 +38,35 @@ public class GameDisplay extends JComponent {
   /** The height of the display (in pixels). **/
   private int height;
 
+  
+  
   /**
    * The display's image is first drawn to this buffer, in effect giving us
    * double buffering and reducing flicker.  Should never be null.
    **/
   private BufferedImage buffer;
-
+  private BufferedImage background = loadBackground();
   /**
    * Creates a new instance with the specified width and height (in
    * pixels).
    **/
+  
+  private BufferedImage loadBackground() {
+	  /* Loads the background image and returns it
+	   * as an image
+	   */
+	  String filename = "missilecommand/space.jpg";
+	  /* I got the image from "http://upload.wikimedia.org/wikipedia/commons/2/2f/Hubble_ultra_deep_field.jpg" */
+	  try {
+		  File file = new File(filename);
+		  return ImageIO.read(file);
+	  }
+	  catch (IOException e) {
+		  System.out.println("Failed to load background image");
+		  return null;
+	  }
+  }
+  
   public GameDisplay(int width, int height) {
     this.width = width;
     this.height = height;
@@ -73,7 +98,37 @@ public class GameDisplay extends JComponent {
       graphics.drawImage(buffer, 0, 0, this);
     }
   }
+  
+  public void paintBackground(Graphics g) {
+	  /* Paints the background */
+	  if (background != null) {
+		  g.drawImage(background, 0, 0, null);
+	  }
+  }
 
+  int yes = 0;
+  
+  public void paintMessages(Iterator iter, Graphics g) {
+	  /* First, set the color of the messages / the font */
+	  Color c = new Color(200,200,0);
+	  Font font = new Font("Serif", Font.BOLD, 15);
+	  g.setColor(c);
+	  g.setFont(font);
+	  while (iter.hasNext()) {
+		  /* Run through all the messages, removing them
+		   * if they're dead and displaying them otherwise.
+		   */
+		  Message msg = (Message)iter.next();
+		  msg.decrementCycles();
+		  if (msg.isDead()) {
+			  iter.remove();
+			  continue;
+		  }
+		  //Otherwise, draw it!
+		  g.drawChars(msg.chars(), 0, msg.getLength(), msg.getX(), msg.getY());
+	  }
+  }
+  
   /**
    * Updates the display by using the provided (non-null) state object to
    * draw the current set of buildings, explosions, and missiles.
@@ -84,10 +139,11 @@ public class GameDisplay extends JComponent {
       // Only one thread should access the buffer's Graphics object...
       graphics = buffer.getGraphics();
     }
-
+    paintBackground(graphics);
     paintBuildings(state.buildings.iterator(),  graphics);
     paintMissiles(state.missiles.iterator(), graphics);
     paintExplosions(state.explosions.iterator(), graphics);
+    paintMessages(state.messages.iterator(), graphics);
     fadeBuffer(graphics);
   }
 
@@ -105,6 +161,9 @@ public class GameDisplay extends JComponent {
    * Paint all the buildings using the provided Graphics object.  Assumes
    * that every object returned by the Iterator is a {@link Building}.
    **/
+  
+  
+  
   private void paintBuildings(Iterator iter, Graphics graphics) {
 
     Vector2D topLeftPoint, bottomRightPoint;
@@ -153,7 +212,11 @@ public class GameDisplay extends JComponent {
         (float)(m.getExplosionSize()) /
         (Missile.MAX_EXPLOSION_SIZE + Missile.MIN_EXPLOSION_SIZE);
 
-      graphics.setColor(new Color(1.0F, 1.0F - hue, 0.0F));
+      //graphics.setColor(new Color(1.0F, 1.0F - hue, 0.0F));
+      int r = gen.nextInt(256);
+      int g = gen.nextInt(256);
+      int b = gen.nextInt(256);
+      graphics.setColor(new Color(r,g,b));
       graphics.fillOval(x, y, size, size);
     }
   }

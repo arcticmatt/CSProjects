@@ -5,7 +5,7 @@ package missilecommand;
  */
 public class Vector2D {
 	//i,j represent the i / j components of the vector.
-	private int i, j;
+	private int i, j, type;
 	/**
 	 * Creates a new Vector2D with zero magnitude.
 	 */
@@ -29,6 +29,15 @@ public class Vector2D {
     this.j = j;
   }
 
+  /** Creates a Vector2D with the specified i, j, and type. **/
+  
+  public Vector2D(int i, int j, int type) {
+	  this.i = i;
+	  this.j = j;
+	  this.type = type;
+  }
+  
+  
   /**
    * Adds another Vector2D this this Vector2D and returns the the resulting
    * vector.
@@ -146,4 +155,14 @@ public class Vector2D {
   public String toString() {
     return String.format("<%d, %d>", i, j);
   }
+  
+  /** Returns the type of the vector **/
+  public int getType() {
+	  return type;
+  }
+  
+  public void setType(int type) {
+	  this.type = type;
+  }
+  
 }

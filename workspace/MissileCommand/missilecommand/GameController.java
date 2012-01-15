@@ -90,7 +90,7 @@ public class GameController extends MouseAdapter implements Runnable {
     if(state != null) {
       synchronized (state.playerClicks) {
         state.playerClicks.add
-        (new Vector2D(e.getX(), display.getHeight() - e.getY()));
+        (new Vector2D(e.getX(), display.getHeight() - e.getY(), e.getButton()));
       }
     }
   }

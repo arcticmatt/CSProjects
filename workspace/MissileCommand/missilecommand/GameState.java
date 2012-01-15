@@ -43,9 +43,15 @@ public class GameState {
    **/
   public LinkedList<Vector2D> playerClicks;
 
+  /** A linked list of all the messages displayed to the player **/
+  public LinkedList<Message> messages;
+  
   /** The player's current score. **/
   public int score;
 
+  /* The number of nukes */
+  private int nukes;
+  
   /**
    * The player's current power level.
    * Should be between 0 and 1, inclusive.
@@ -68,8 +74,24 @@ public class GameState {
     explosions = new LinkedList<Explosion>();
     buildings = new LinkedList<Building>();
     playerClicks = new LinkedList<Vector2D>();
+    messages = new LinkedList<Message>();
     score = 0;
     power = 0.0F;
+    nukes = 2;
   }
 
+  /** Increments the score by the given value **/
+  
+  public void incrementScore(int value) {
+	  score += value;
+  }
+  
+  public boolean hasNuke() {
+	  return nukes > 0;
+  }
+  
+  public void useNuke() {
+	  nukes--;
+  }
+  
 }

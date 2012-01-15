@@ -13,6 +13,7 @@ package missilecommand;
  **/
 public class Building {
 
+	
   /**
    * The top left coordinate of the building, from the user's perspective.
    * Missile command uses Quadrant 1 of the two-dimensional Cartesian
