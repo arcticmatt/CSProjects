@@ -1,0 +1,27 @@
+Modifications:
+	1) Missiles have lateral velocity.
+	2) Missiles bounce off walls.
+	3) Missiles change colors continuously.
+	4) Your score decreases when missiles hit the buildings.
+	5) The background is outerspace.
+	6) Your score increments as you kill more missiles with single
+	   explosions: 
+	   -Single kill = 10 points
+	   -Double kill = 25 * 2 points
+	   -Triple kill = 50 * 3 points
+	   -Quadruple (and above) kill = 100 * k points
+	7) The rate at which missiles spawn is determined by the amount
+	   of cycles which have passed since the game started, and the
+	   number of missiles on the field. This gives us exponential 
+	   growth in the number of missiles on the field.
+	8) You have 2 nukes, which you can use by pressing the right mouse.
+	9) You are classified as a failure at life, noob, amateur, or pro
+	   based upon your final score.
+	10) Additions to your score are posted on the playing field.
+	11) The speed of missiles is partially determined by the number of
+	missiles already on the field, preventing hoardes of missiles & abusing
+	nukes on hoardes to massively increase your score.
+	12) Hitting buildings decreases your power level (and score).
+
+The game requires constant attention, and one mistake will cause you to get
+a bad score. My high score was 10140. 
