@@ -42,4 +42,8 @@ public class Message {
 		cycles--;
 	}
 	
+	public void setText(String text) {
+		this.text = text;
+	}
+	
 }

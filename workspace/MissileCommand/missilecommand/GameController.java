@@ -77,7 +77,19 @@ public class GameController extends MouseAdapter implements Runnable {
       try { Thread.sleep(frameDelay); } catch (Exception e) { /* Ignored. */ }
     }
 
-    JOptionPane.showMessageDialog(display, "Your Score: " + state.score,
+    String msg = "Your score was " + state.score + "\n";
+    if (state.score < 0) {
+    	msg += "You fail at life";
+    }
+    else if (state.score < 3000) {
+    	msg += "You are a noob.";
+    } else if (state.score < 9000) {
+    	msg += "You are an amateur.";
+    } else if (state.score > 9000) {
+    	msg += "You scored OVER 9000!!! PRO!";
+    }
+    
+    JOptionPane.showMessageDialog(display, msg,
         "Game Over", JOptionPane.OK_OPTION);
 
     startGame();

@@ -6,6 +6,9 @@
  * Modified by:   Brian Emre Aydemir
  */
 package missilecommand;
+
+import java.util.LinkedList;
+
 /**
  * Instances of this class represent simple two-dimensional explosions.
  **/
@@ -17,6 +20,9 @@ public class Explosion {
   /** The radius of the explosion measured in pixels.  Defaults to 0. **/
   private int currentRadius = 0;
 
+  /** The messages to be displayed when the explosion dies **/
+  private LinkedList<Message> messages = new LinkedList<Message>();
+  
   /**
    * The maximum radius of the explosion measured in pixels.
    * The default value is 50 pixels.
@@ -101,6 +107,15 @@ public class Explosion {
     return location.distanceTo(missile.getLocation()) <= currentRadius;
   }
 
+  /** Adds a message to be displayed when the explosion finishes **/
+  public void addMessage(Message m) {
+	  messages.add(m);
+  }
+  
+  public LinkedList<Message> getMessages() {
+	  return messages;
+  }
+  
   /**
    * Returns true if and only if this explosion intersects the building
    * passed in as an argument.

@@ -69,38 +69,48 @@ public class GameLogic {
 
     // Iterate over each currently active missile.
     while(missiles.hasNext()) {
+      
+		
+	
       Missile m = (Missile)missiles.next();
       // Move the missile and get its new location.
       m.move();
       Vector2D location = m.getLocation();
 
-      if (location.getIComp() < 0 ||
-          location.getIComp() > state.worldWidth)
-      {
-        // Missile went off the left or right edge of the screen.
-        //missiles.remove();
-    	m.getVelocity().setIComp(-m.getVelocity().getIComp());
-      }
-      else if (location.getJComp() < 0)
+      if (location.getJComp() < 0)
       {
         // The missile hit the ground.
         location.setJComp(0);
         missiles.remove();
         buildingHit = true;
         state.explosions.add(m.explode());
-      }
-      else
-      {
-        // Loop over all the buildings to see if we hit any of them.
-        buildingHit = false;
-        for(Building b : state.buildings) {
-          if(b.isInterior(m.getLocation())) {
-            missiles.remove();
-            buildingHit = true;
-            state.explosions.add(m.explode());
+      } else if (location.getIComp() < 0)
+      	{
+          // Missile went off the left of screen; bounce it.
+      		m.getLocation().setIComp(0);
+      		m.getVelocity().setIComp(-m.getVelocity().getIComp());
+        } else if (location.getIComp() > state.worldWidth) {
+        	//The missile went off the right side of the screen; bounce it.
+        	m.getLocation().setIComp(state.worldWidth);
+        	m.getVelocity().setIComp(-m.getVelocity().getIComp());
+        }
+        else
+        {
+        	// Loop over all the buildings to see if we hit any of them.
+        	buildingHit = false;
+        	for (Building b : state.buildings) {
+        		if (b.isInterior(m.getLocation())) {
+        			try {
+        				missiles.remove();
+        				buildingHit = true;
+        				state.explosions.add(m.explode());
+        			} catch (Exception e) {
+        				System.out.println(e.toString());
+        			}
           }
         }		
       }
+      
     }
   }
   
@@ -109,7 +119,7 @@ public class GameLogic {
 		int X = gen.nextInt(state.worldWidth); 
   		int Y = state.worldHeight;
   		int xVelocity = 10 - gen.nextInt(20);
-  		int yVelocity = -gen.nextInt(2) - 1;
+  		int yVelocity = -gen.nextInt(2) - 1 - state.missiles.size() / 10;
   		Vector2D location = new Vector2D(X, Y);
   		Vector2D velocity = new Vector2D(xVelocity, yVelocity);
   		Missile missile = new Missile(location, velocity);
@@ -124,7 +134,7 @@ public class GameLogic {
 	  		/* Every 20 cycles, we initiate:
 	  		 * (x/1000)+2 missiles, where x = cycleCount.
 	  		 */
-	  		int missileCount = (cycleCount / 1000) + 2;
+	  		int missileCount = (cycleCount / 1000) + 2 + state.missiles.size() / 10;
 	  		for (int i = 0; i < missileCount; i++) {
 	  			makeMissile(state);
 	  		}
@@ -186,6 +196,30 @@ public class GameLogic {
     }
   }
 
+  /** Displays the score messages after the explosion terminates **/
+  private void displayExplosionScoreMessages(GameState state, Explosion e) {
+	  int size = e.getMessages().size();
+	  //scoreValue is the score associated with a multikill of the given size
+	  int scoreValue = 0;
+	  if (size == 1) {
+		  scoreValue = 10;
+	  } else if (size == 2) {
+		  scoreValue = 20;
+	  } else if (size == 3) {
+		  scoreValue = 50;
+	  } else if (size >= 4) {
+		  scoreValue = 100;
+	  }
+	  //Now loop through all the messages and display them.
+	  Iterator messages = e.getMessages().iterator();
+	  while (messages.hasNext()) {
+		  Message msg = (Message)messages.next();
+		  msg.setText("+" + scoreValue);
+		  state.messages.add(msg);
+	  }
+	  state.incrementScore(size * scoreValue);
+  }
+  
   /**
    * Check to see if explosions have destroyed missiles or buildings.
    **/
@@ -202,6 +236,8 @@ public class GameLogic {
 
       if (e.explode()) {
         // The explosion has reached its maximum size.
+    	//display messages and remove the explosion.
+    	displayExplosionScoreMessages(state, e);
         explosions.remove();
       } else {
         // Check if the explosion has destroyed a missile.
@@ -210,14 +246,13 @@ public class GameLogic {
           Missile m = (Missile)missiles.next();
           if (e.intersects(m)) {
         	  Vector2D location = m.getLocation();
-        	  Message msg = new Message("+69", location.getIComp(), state.worldHeight - location.getJComp(), 20);
-        	  state.messages.add(msg);
+        	  Message msg = new Message("", location.getIComp(), state.worldHeight - location.getJComp(), 20);
+        	  e.addMessage(msg);
         	  /* If it intersects the missile, the missile dies;
         	   * we'll remove it.
         	   */
         	  missiles.remove();
         	  //Whenever a missile dies, increment the score by 69
-        	  state.incrementScore(69);
         	  
           }
         }
@@ -227,6 +262,11 @@ public class GameLogic {
         while (buildings.hasNext()) {
           Building b = (Building)buildings.next();
           if (e.intersects(b)) {
+        	  //Decrement score by 20.
+        	  Vector2D location = b.getTopLeft();
+        	  Message msg = new Message("-20", location.getIComp(), state.worldHeight - location.getJComp(), 20);
+        	  state.messages.add(msg);
+        	  state.incrementScore(-20);
         	  /* Damage the building, and if the building is out
         	   * of health, remove it.
         	   */
