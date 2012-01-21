@@ -11,6 +11,7 @@ public class BubbleSorter extends BaseSorter {
    * @param array The array to sort.
    */
   public void doSort(double[] array) {
+	  
     for (int i = 0; i < array.length; i++) {
       for (int j = 1; j < array.length - i; j++) {
         if (lessThan(array, j, j - 1)) {
@@ -18,6 +19,17 @@ public class BubbleSorter extends BaseSorter {
         }
       }
     }
+    
+    printArray(array);
+    
+  }
+  
+  private void printArray(double[] array) {
+	  String f = "";
+	  for (int i = 0; i < array.length; i++) {
+		  f += ";" + array[i];
+	  }
+	  System.out.println(f);
   }
 
 }

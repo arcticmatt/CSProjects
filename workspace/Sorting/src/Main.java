@@ -14,12 +14,13 @@ public class Main {
    */
   public static void main(String[] args) throws InterruptedException {
     // Change this line to use a different sorting algorithm!
-    BaseSorter sorter = new BubbleSorter();
+    BaseSorter sorter = new MergeSorter();
     
     // Change the number to change the size of the array to sort.
     // Use a TextualSortingApplication if the sorting implementation modifies
     // on the array directly instead of using the swap method.
     new TextualSortingApplication(sorter, ARRAY_SIZE);
+  //  new GraphicalSortingApplication(sorter, ARRAY_SIZE);
   }
   
 }
