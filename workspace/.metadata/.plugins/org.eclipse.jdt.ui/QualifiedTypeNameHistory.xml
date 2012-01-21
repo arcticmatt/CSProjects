@@ -12,4 +12,13 @@
 <fullyQualifiedTypeName name="missilecommand.GameLogic"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="SelectionSorter"/>
+<fullyQualifiedTypeName name="Main"/>
+<fullyQualifiedTypeName name="GraphicalSortingApplication"/>
+<fullyQualifiedTypeName name="BubbleSorter"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="GrahamScanner"/>
+<fullyQualifiedTypeName name="LineSegment"/>
 </qualifiedTypeNameHistroy>

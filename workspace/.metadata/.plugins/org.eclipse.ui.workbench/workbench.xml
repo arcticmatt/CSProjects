@@ -2,7 +2,10 @@
 <workbench progressCount="17" version="2.0">
 <workbenchAdvisor/>
 <window height="769" maximized="true" width="1020" x="686" y="192">
-<fastViewData fastViewLocation="1024"/>
+<fastViewData fastViewLocation="1024">
+<orientation position="512" view="org.eclipse.ui.views.ProblemView"/>
+<orientation position="512" view="org.eclipse.ui.console.ConsoleView"/>
+</fastViewData>
 <perspectiveBar>
 <itemSize x="160"/>
 </perspectiveBar>
@@ -37,68 +40,47 @@
 <part id="5"/>
 <part id="6"/>
 <part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
-<part id="11"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameLogic.java" partName="GameLogic.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/GameLogic.java" title="GameLogic.java" tooltip="MissileCommand/missilecommand/GameLogic.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/GameLogic.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10084" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/Main.java" title="Main.java" tooltip="ConvexHull/src/Main.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/Main.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="412" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Building.java" partName="Building.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/Building.java" title="Building.java" tooltip="MissileCommand/missilecommand/Building.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/Building.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5916" selectionTopPixel="1154"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GiftWrapper.java" partName="GiftWrapper.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/GiftWrapper.java" title="GiftWrapper.java" tooltip="ConvexHull/src/GiftWrapper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/GiftWrapper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2807" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MissileCommandApplication.java" partName="MissileCommandApplication.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/MissileCommandApplication.java" title="MissileCommandApplication.java" tooltip="MissileCommand/missilecommand/MissileCommandApplication.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/MissileCommandApplication.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1059" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Point.java" partName="Point.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/Point.java" title="Point.java" tooltip="ConvexHull/src/Point.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/Point.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1548" selectionTopPixel="1149"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Missile.java" partName="Missile.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/Missile.java" title="Missile.java" tooltip="MissileCommand/missilecommand/Missile.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/Missile.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1439" selectionTopPixel="384"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LineSegment.java" partName="LineSegment.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/LineSegment.java" title="LineSegment.java" tooltip="ConvexHull/src/LineSegment.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/LineSegment.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="547" selectionTopPixel="367"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameDisplay.java" partName="GameDisplay.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/GameDisplay.java" title="GameDisplay.java" tooltip="MissileCommand/missilecommand/GameDisplay.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/GameDisplay.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5999" selectionTopPixel="3054"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GrahamScanner.java" partName="GrahamScanner.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/GrahamScanner.java" title="GrahamScanner.java" tooltip="ConvexHull/src/GrahamScanner.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/GrahamScanner.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="449" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" partName="GameController.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/GameController.java" title="GameController.java" tooltip="MissileCommand/missilecommand/GameController.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/GameController.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2600" selectionTopPixel="1064"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AnimationExample.java" partName="AnimationExample.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/AnimationExample.java" title="AnimationExample.java" tooltip="ConvexHull/src/AnimationExample.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/AnimationExample.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="661" selectionTopPixel="112"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MissileCommandApplet.java" partName="MissileCommandApplet.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/MissileCommandApplet.java" title="MissileCommandApplet.java" tooltip="MissileCommand/missilecommand/MissileCommandApplet.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/MissileCommandApplet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="661" selectionTopPixel="0"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AnimationFrame.java" partName="AnimationFrame.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/AnimationFrame.java" title="AnimationFrame.java" tooltip="ConvexHull/src/AnimationFrame.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/AnimationFrame.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameState.java" partName="GameState.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/GameState.java" title="GameState.java" tooltip="MissileCommand/missilecommand/GameState.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/GameState.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2395" selectionTopPixel="877"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Explosion.java" partName="Explosion.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/Explosion.java" title="Explosion.java" tooltip="MissileCommand/missilecommand/Explosion.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/Explosion.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3441" selectionTopPixel="1226"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Message.java" partName="Message.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/Message.java" title="Message.java" tooltip="MissileCommand/missilecommand/Message.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/Message.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="859" selectionTopPixel="95"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Vector2D.java" partName="Vector2D.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/Vector2D.java" title="Vector2D.java" tooltip="MissileCommand/missilecommand/Vector2D.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/Vector2D.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="352" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Scoreboard.java" partName="Scoreboard.java" path="/home/ryan/CSProjects/workspace/MissileCommand/missilecommand/Scoreboard.java" title="Scoreboard.java" tooltip="MissileCommand/missilecommand/Scoreboard.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MissileCommand/missilecommand/Scoreboard.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4" selectionTopPixel="28"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ConvexHullAlgorithm.java" partName="ConvexHullAlgorithm.java" path="/home/ryan/CSProjects/workspace/ConvexHull/src/ConvexHullAlgorithm.java" title="ConvexHullAlgorithm.java" tooltip="ConvexHull/src/ConvexHullAlgorithm.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ConvexHull/src/ConvexHullAlgorithm.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="754"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.jdt.ui.TypeHierarchy" partName="Hierarchy"/>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
-<view IMemento.internal.id="org.eclipse.jdt.ui.JavaSearchResultPage" org.eclipse.jdt.search.resultpage.grouping="3" org.eclipse.jdt.search.resultpage.limit="1000" org.eclipse.jdt.search.resultpage.limit_enabled="TRUE" org.eclipse.jdt.search.resultpage.sorting="1" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2"/>
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
 </viewState>
 </view>
@@ -107,7 +89,8 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>&#x0A;<category IMemento.internal.id="Warnings"/>
+<expanded>
+<category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="73" org.eclipse.ui.ide.markerType="802" org.eclipse.ui.ide.pathField="318" org.eclipse.ui.ide.resourceField="108" org.eclipse.ui.ide.severityAndDescriptionField="788"/>
@@ -150,6 +133,11 @@
 </customFilters>
 </viewState>
 </view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints"/>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
@@ -212,13 +200,14 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.jdt.ui.TypeHierarchy"/>
-<view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
-<view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.eclipse.search.ui.views.SearchView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
+<fastViews>
+<view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
+</fastViews>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -245,13 +234,13 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.15610267" ratioLeft="298" ratioRight="1611" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.74960876" ratioLeft="479" ratioRight="160" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<folder activePageID="org.eclipse.search.ui.views.SearchView" appearance="2" expanded="2">
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
+<page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -259,12 +248,10 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
-<part id="4"/>
-<part id="5"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="right" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
+<info folder="true" part="right" ratio="0.880597" ratioLeft="1416" ratioRight="192" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
@@ -277,169 +264,260 @@
 </mainWindow>
 </layout>
 </perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.debug.internal.ui.DebugPerspectiveFactory" id="org.eclipse.debug.ui.DebugPerspective" label="Debug"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="org.eclipse.jdt.debug.ui.DisplayView"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74972314" ratioLeft="677" ratioRight="226" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
+<page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.44903988" ratioLeft="304" ratioRight="373" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
 </perspectives>
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/GameLogic.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/Building.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/GameState.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/Scoreboard.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/GameController.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/GameDisplay.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/Explosion.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MissileCommand/missilecommand/Message.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=Vector2DGame/\/usr\/lib\/jvm\/java-6-openjdk\/jre\/lib\/rt.jar&lt;java.util(LinkedList.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ConvexHull/src/GrahamScanner.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ConvexHull/src/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ConvexHull/src/AnimationExample.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ConvexHull/src/AnimationFrame.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/ConvexHull/src/ConvexHullAlgorithm.java"/>
 </editors>
-<item historyLabel="Message.java" index="7">
-<position info="not_deleted" x="275" y="0"/>
+<item historyLabel="Main.java" index="1">
+<position info="not_deleted" x="412" y="0"/>
 </item>
-<item historyLabel="Message.java" index="7">
-<position info="not_deleted" x="859" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1800" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="6493" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="6462" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="6491" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="6540" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="7195" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
+<item historyLabel="GrahamScanner.java" index="0">
 <position/>
 </item>
-<item historyLabel="Message.java" index="7">
-<position info="not_deleted" x="859" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="854" y="28"/>
 </item>
-<item historyLabel="GameDisplay.java" index="5">
-<position info="not_deleted" x="6082" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="853" y="0"/>
 </item>
-<item historyLabel="Building.java" index="1">
-<position info="not_deleted" x="5444" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="831" y="0"/>
 </item>
-<item historyLabel="GameState.java" index="2">
-<position info="not_deleted" x="1641" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="784" y="0"/>
 </item>
-<item historyLabel="Message.java" index="7">
-<position info="not_deleted" x="859" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1091" y="45"/>
 </item>
-<item historyLabel="Scoreboard.java" index="3">
-<position info="not_deleted" x="4" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="1776" y="0"/>
-</item>
-<item historyLabel="Building.java" index="1">
-<position info="not_deleted" x="5384" y="0"/>
-</item>
-<item historyLabel="GameDisplay.java" index="5">
-<position info="not_deleted" x="5987" y="0"/>
-</item>
-<item historyLabel="GameController.java" index="4">
-<position info="not_deleted" x="2301" y="0"/>
-</item>
-<item historyLabel="GameState.java" index="2">
-<position info="not_deleted" x="1641" y="0"/>
-</item>
-<item historyLabel="Explosion.java" index="6">
-<position info="not_deleted" x="3441" y="0"/>
-</item>
-<item historyLabel="GameState.java" index="2">
-<position info="not_deleted" x="2395" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="6054" y="0"/>
-</item>
-<item historyLabel="Building.java" index="1">
-<position info="not_deleted" x="5384" y="0"/>
-</item>
-<item historyLabel="GameDisplay.java" index="5">
-<position info="not_deleted" x="5987" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="7068" y="0"/>
-</item>
-<item historyLabel="LinkedList.class" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="2945" y="30"/>
-</item>
-<item historyLabel="GameLogic.java" index="0">
+<item historyLabel="GrahamScanner.java" index="0">
 <position/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="2028" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="2944" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1960" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="2805" y="29"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2011" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="4027" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="3686" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2702" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="1916" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="3378" y="0"/>
 </item>
-<item historyLabel="GameDisplay.java" index="5">
-<position info="not_deleted" x="5999" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2855" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="1916" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2875" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="3588" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="3476" y="0"/>
 </item>
-<item historyLabel="GameController.java" index="4">
-<position info="not_deleted" x="1666" y="33"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2062" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="1345" y="26"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="1872" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2179" y="0"/>
 </item>
-<item historyLabel="GameController.java" index="4">
-<position info="not_deleted" x="2600" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position/>
 </item>
-<item historyLabel="GameDisplay.java" index="5">
-<position info="not_deleted" x="5999" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position/>
 </item>
-<item historyLabel="Building.java" index="1">
-<position info="not_deleted" x="5384" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="1872" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1277" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="3086" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1385" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="956" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1392" y="0"/>
 </item>
-<item historyLabel="Building.java" index="1">
-<position info="not_deleted" x="5916" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2393" y="0"/>
 </item>
-<item historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="5316" y="0"/>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2541" y="0"/>
 </item>
-<item historyLabel="LinkedList.class" index="8">
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2491" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="2293" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1232" y="0"/>
+</item>
+<item historyLabel="AnimationExample.java" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="GameLogic.java" index="0">
-<position info="not_deleted" x="5316" y="0"/>
+<item historyLabel="AnimationFrame.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="AnimationExample.java" index="2">
+<position info="not_deleted" x="661" y="0"/>
+</item>
+<item historyLabel="ConvexHullAlgorithm.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1232" y="0"/>
+</item>
+<item historyLabel="AnimationExample.java" index="2">
+<position info="not_deleted" x="661" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1232" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1436" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1399" y="0"/>
+</item>
+<item historyLabel="AnimationExample.java" index="2">
+<position info="not_deleted" x="661" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1399" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1321" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1327" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1348" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1353" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="1354" y="0"/>
+</item>
+<item historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="407" y="0"/>
+</item>
+<item active="true" historyLabel="GrahamScanner.java" index="0">
+<position info="not_deleted" x="408" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -447,6 +525,12 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="right"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -454,10 +538,35 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ConvexHullAlgorithm.java" tooltip="ConvexHull/src/ConvexHullAlgorithm.java">
+<persistable path="/ConvexHull/src/ConvexHullAlgorithm.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AnimationFrame.java" tooltip="ConvexHull/src/AnimationFrame.java">
+<persistable path="/ConvexHull/src/AnimationFrame.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AnimationExample.java" tooltip="ConvexHull/src/AnimationExample.java">
+<persistable path="/ConvexHull/src/AnimationExample.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GrahamScanner.java" tooltip="ConvexHull/src/GrahamScanner.java">
+<persistable path="/ConvexHull/src/GrahamScanner.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LineSegment.java" tooltip="ConvexHull/src/LineSegment.java">
+<persistable path="/ConvexHull/src/LineSegment.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Point.java" tooltip="ConvexHull/src/Point.java">
+<persistable path="/ConvexHull/src/Point.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GiftWrapper.java" tooltip="ConvexHull/src/GiftWrapper.java">
+<persistable path="/ConvexHull/src/GiftWrapper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="ConvexHull/src/Main.java">
+<persistable path="/ConvexHull/src/Main.java"/>
+</file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="LinkedList.class" tooltip="java.util.LinkedList">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Vector2DGame/\/usr\/lib\/jvm\/java-6-openjdk\/jre\/lib\/rt.jar&lt;java.util(LinkedList.class"/>
 </file>
@@ -469,36 +578,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Message.java" tooltip="MissileCommand/missilecommand/Message.java">
 <persistable path="/MissileCommand/missilecommand/Message.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameState.java" tooltip="MissileCommand/missilecommand/GameState.java">
-<persistable path="/MissileCommand/missilecommand/GameState.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MissileCommandApplet.java" tooltip="MissileCommand/missilecommand/MissileCommandApplet.java">
-<persistable path="/MissileCommand/missilecommand/MissileCommandApplet.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameController.java" tooltip="MissileCommand/missilecommand/GameController.java">
-<persistable path="/MissileCommand/missilecommand/GameController.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameDisplay.java" tooltip="MissileCommand/missilecommand/GameDisplay.java">
-<persistable path="/MissileCommand/missilecommand/GameDisplay.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Missile.java" tooltip="MissileCommand/missilecommand/Missile.java">
-<persistable path="/MissileCommand/missilecommand/Missile.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="MissileCommandApplet.html" tooltip="MissileCommand/missilecommand/MissileCommandApplet.html">
-<persistable path="/MissileCommand/missilecommand/MissileCommandApplet.html"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="._Building.java" tooltip="MissileCommand/missilecommand/._Building.java">
-<persistable path="/MissileCommand/missilecommand/._Building.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MissileCommandApplication.java" tooltip="MissileCommand/missilecommand/MissileCommandApplication.java">
-<persistable path="/MissileCommand/missilecommand/MissileCommandApplication.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Building.java" tooltip="MissileCommand/missilecommand/Building.java">
-<persistable path="/MissileCommand/missilecommand/Building.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameLogic.java" tooltip="MissileCommand/missilecommand/GameLogic.java">
-<persistable path="/MissileCommand/missilecommand/GameLogic.java"/>
 </file>
 </mruList>
 </workbench>

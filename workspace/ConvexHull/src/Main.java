@@ -13,7 +13,7 @@ public class Main {
    * @param args
    */
   public static void main(String[] args) {
-    ConvexHullAlgorithm algorithm = new GiftWrapper();
+    ConvexHullAlgorithm algorithm = new GrahamScanner();
     
     new ConvexHullApplication(algorithm, NUM_POINTS);
   }
