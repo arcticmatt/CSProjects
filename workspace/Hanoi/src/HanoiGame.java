@@ -1,0 +1,161 @@
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * A class for representing the Towers of Hanoi game.
+ * 
+ * @author Justin Johnson
+ *
+ */
+public class HanoiGame {
+
+  /**
+   * The number of pegs in a game of Hanoi is 3.
+   */
+  public static final int NUM_PEGS = 3;
+  //the number of moves
+  public int moves = 0;
+  
+  // The number of disks in this HanoiGame.
+  private int numDisks;
+  
+  // Stores the location of all the disks.
+  private List<Deque<Integer>> pegs;
+  
+  // The panel that will animate the frames of this game.
+  private HanoiPanel panel = null;
+    
+  /**
+   * Creates a new HanoiGame with a specified number of disks.
+   * 
+   * @param numDisks The number of disks for this game.
+   */
+  public HanoiGame(int numDisks) {
+    this.numDisks = numDisks;
+    pegs = new ArrayList<Deque<Integer>>();
+    
+    // Create the pegs.
+    for (int i = 0; i < NUM_PEGS; i++) {
+      pegs.add(new LinkedList<Integer>());
+    }
+    
+    // Fill the first peg with disks.
+    for (int i = numDisks - 1; i >= 0; i--) {
+      pegs.get(0).push(i);
+    }
+  }
+  
+  /**
+   * Creates a new HanoiGame with a specified number of disks and which will
+   * forward its moves to a specified HanoiPanel for animation.
+   * 
+   * @param numDisks The number of disks for this game.
+   * @param panel The HanoiPanel that will animate this HanoiGame.
+   */
+  public HanoiGame(int numDisks, HanoiPanel panel) {
+    this(numDisks);
+    this.panel = panel;
+  }
+  
+  /**
+   * Get the number of disks for this HanoiGame.
+   * 
+   * @return The total number of disks for this game.
+   */
+  public int getNumDisks() {
+    return numDisks;
+  }
+  
+  /**
+   * Gets the number of disks on a specified peg.
+   * 
+   * @param peg The peg to check. Must have 0 <= peg < NUM_PEGS
+   * @return The number of disks on the specified peg.
+   */
+  public int getNumDisks(int peg) {
+    if (0 <= peg && peg < NUM_PEGS) {
+      return pegs.get(peg).size();
+    }
+    throw new RuntimeException("Cannot access peg " + peg);
+  }
+  
+  /**
+   * Check whether a particular move is valid.
+   * 
+   * @param start The starting peg of the move. 
+   * Must have 0 <= start < NUM_PEGS.
+   * @param finish The ending peg of the move.
+   * Must have 0 <= finish < NUM_PEGS. 
+   */
+  public boolean isValidMove(int start, int finish) {
+    if (0 <= start && start < NUM_PEGS && 0 <= finish && finish < NUM_PEGS) {
+      
+      // Not valid if there are no disks on the starting peg.
+      if (pegs.get(start).isEmpty()) {
+        return false;
+      }
+      
+      // Always valid if there are no disks on the finishing peg.
+      if (pegs.get(finish).isEmpty()) {
+        return true;
+      }
+      
+      return pegs.get(start).peekFirst() < pegs.get(finish).peekFirst();
+    }
+    
+    return false;
+  }
+  
+  /**
+   * Make a move in this HanoiGame. If the move is not valid then a runtime
+   * exception will be thrown.
+   * 
+   * @param start The starting peg of the move.
+   * @param finish The ending peg of the move.
+   */
+  public void makeMove(int start, int finish) {
+	  moves++;
+    if (!isValidMove(start, finish)) {
+      throw new RuntimeException("The move start = " + start + " finish = "
+          + finish + " is not valid.");
+    }    
+    
+    if (panel != null) {
+      panel.scheduleMove(start, finish);
+    }
+    
+    pegs.get(finish).push(pegs.get(start).pop());
+  }
+  
+  /**
+   * Check whether this HanoiGame is solved.
+   * 
+   * @return true if all the pegs are on the ending peg and false otherwise.
+   */
+  public boolean isSolved() {
+    return pegs.get(NUM_PEGS - 1).size() == numDisks;
+  }
+  
+  /**
+   * Get the contents of one of the pegs.
+   * 
+   * @param peg The peg to inspect. Must have 0 <= peg < NUM_PEGS; if not then
+   * a runtime exception is thrown.
+   * @return A List<Integer> storing the contents of the requested peg. The top
+   * of the stack is at index 0. Disks are numbered from 0 to numDisks - 1 and
+   * bigger numbers correspond to larger disks.
+   */
+  public List<Integer> getPeg(int peg) {
+    if (peg < 0 || peg >= NUM_PEGS) {
+      throw new RuntimeException("Cannot get peg " + peg);
+    }
+    List<Integer> ret = new ArrayList<Integer>();
+    for (Integer i : pegs.get(peg)) {
+      ret.add(i);
+    }
+    return ret;
+  }
+
+}

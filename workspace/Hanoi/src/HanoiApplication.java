@@ -1,0 +1,86 @@
+import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+/** 
+ * The main class used to drive the Towers of Hanoi application.
+ *
+ * @author Justin
+ */
+public class HanoiApplication {
+  
+  // The number of disks to visualize.
+  private static final int NUM_DISKS = 6;
+  
+  // The help text to be shown to the user.
+  private static final String LABEL_TEXT = "Press the spacebar to solve";
+  
+  // The size of the font for the help text.
+  private static final float FONT_SIZE = 14.0f;
+
+  private HanoiPanel panel;
+  private HanoiGame hanoi;
+  private HanoiSolver solver;
+
+  public static void main(String[] args) {
+    new HanoiApplication();
+  }
+
+  /**
+   * Creates a new HanoiApplication.
+   */
+  public HanoiApplication() {
+    JFrame frame = new JFrame("Towers of Hanoi");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.addKeyListener(new HanoiKeyListener());
+    
+    // Set up the label used to display the instructions.
+    JLabel label = new JLabel(LABEL_TEXT, SwingConstants.CENTER);
+    label.setFont(label.getFont().deriveFont(FONT_SIZE));
+
+    panel = new HanoiPanel(NUM_DISKS);
+    hanoi = new HanoiGame(NUM_DISKS, panel);
+    
+    frame.add(panel, BorderLayout.CENTER);
+    frame.add(label, BorderLayout.NORTH);
+    frame.pack();
+    frame.setVisible(true);
+    
+    solver = new HanoiSolver(hanoi);
+  }
+  
+  /**
+   * Private inner class to prevent KeyListener from leaking into the public
+   * interface of HanoiApplication.
+   * 
+   * @author Justin Johnson
+   */
+  private class HanoiKeyListener implements KeyListener {
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+      switch (e.getKeyCode()) {
+        case KeyEvent.VK_SPACE :
+          if (!panel.isRunning()) {
+            solver.solve();
+          }
+          break;
+        case KeyEvent.VK_ESCAPE:
+          System.exit(0);
+          break;
+      }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+    
+  }
+
+}

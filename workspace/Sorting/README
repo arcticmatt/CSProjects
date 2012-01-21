@@ -1,0 +1,27 @@
+Build the project by typing
+
+javac *.java
+
+After bulding run the application by typing
+
+java SortingApplication
+
+While the application is running the following commands are available:
+
+spacebar - Run and display the sort.
+r - Refresh with a new random array.
+escape - Exit.
+
+The main class is defined in SortingApplication.java. The number of elements to
+be sorted can be changed by editing the ARRAY_SIZE constant at the top of this
+file. To toggle the visualization of comparisons, change the TRACK_COMPARISONS
+variable at the top of this file.
+
+The drawing logic is defined in SortingPanel.java, and various aspects of the user
+interface can be customized by editing constants at the top of this file.
+
+BaseSorter.java defines an abstract base class which can keep track of comparisons
+and swaps. To implement a new sorting method, define a class which extends BaseSorter
+and overrides the doSort() method and sorts the array. In this method, swaps and
+comparisons between array methods should be done using the swap() and lessThan()
+methods defined in BaseSorter.
