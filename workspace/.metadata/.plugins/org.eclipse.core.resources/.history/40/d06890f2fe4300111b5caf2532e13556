@@ -1,0 +1,24 @@
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * An implementation of the gift wrapping algorithm.
+ */
+public class GiftWrapper extends ConvexHullAlgorithm {
+
+  /**
+   * Computes the convex hull of a set of points using the gift wrapping algorithm.
+   * 
+   * @param points The set of points whose convex hull is to be computed.
+   * @return A List<Point> representing the convex hull of the input set.
+   */
+  public List<Point> convexHull(Set<Point> points) {
+    List<Point> hull = new LinkedList<Point>();
+
+    // TODO: Finish implementing this method.
+    
+    return hull;
+  }
+
+}

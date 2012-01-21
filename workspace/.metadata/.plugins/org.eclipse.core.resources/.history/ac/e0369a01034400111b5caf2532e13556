@@ -1,0 +1,24 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * An implementation of the Graham scan algorithm.
+ */
+public class GrahamScanner extends ConvexHullAlgorithm {
+
+  /**
+   * Computes the convex hull of a set of points using the Graham scan
+   * algorithm.
+   */
+  public List<Point> convexHull(Set<Point> points) {
+    List<Point> hull = new LinkedList<Point>();
+    
+    // TODO: Finish implementing this method.
+    // HINT: you might find it useful to define some helper methods.
+
+    return hull;
+  }
+
+}

@@ -1,0 +1,55 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * An implementation of the Graham scan algorithm.
+ */
+public class GrahamScanner extends ConvexHullAlgorithm {
+
+  /**
+   * Computes the convex hull of a set of points using the Graham scan
+   * algorithm.
+   */
+  public List<Point> convexHull(Set<Point> points) {
+    List<Point> hull = new LinkedList<Point>();
+    
+    // TODO: Finish implementing this method.
+    // HINT: you might find it useful to define some helper methods.
+
+    return hull;
+  }
+
+  
+  
+  /** Gets the angles associated with each of the points, setting them in the
+   * each of the points (using the associated data methods). Angles are 
+   * relative to the lowest point.
+   */
+  private void calculateAngles(Point lowestPoint, Set<Point> points) {
+	  for (Point p : points) {
+		  //If the point is the lowestPoint, continue.
+		  if (p.equals(lowestPoint)) {
+			  continue;
+		  }
+		  /* Calculate the angle and associate it with the point */
+		  double dx = p.getX() - lowestPoint.getX();
+		  double dy = p.getY() - lowestPoint.getY();
+		  double angle = Math.atan(dy / dx);
+		  p.setData(angle);
+	  }
+  }
+  
+  /** Returns the lowest point in the set; the one with the lowest y value **/
+  private Point getLowestPoint(Set<Point> points) {
+	  Point lowestPoint = null;
+	  for (Point p : points) {
+		  if (lowestPoint == null || p.getY() < lowestPoint.getY()) {
+			  lowestPoint = p;
+		  }
+	  }
+	  return lowestPoint;
+  }
+  
+}
