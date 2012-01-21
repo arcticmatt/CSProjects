@@ -1,0 +1,27 @@
+/**
+ * A MergeSorter sorts arrays using the merge sort algorithm.
+ */
+public class MergeSorter extends BaseSorter {
+
+  /**
+   * Sorts an array using the merge sort algorithm.
+   * 
+   * @param array The array to be sorted.
+   */
+  protected void doSort(double[] array) {
+    // TODO: Implement this method.
+  }
+
+  private double[] merge(double[] array1, double[] array2) {
+	  /* Merges 2 sorted arrays, and returns the result */
+	  int totalElements = array1.length + array2.length;
+	  //result is the array we'll return
+	  int[] result = new int[totalElements];
+	  //the indexes into the first array and the second array
+	  int array1Index, array2Index = 0;
+	  for (int i = 0; i < totalElements; i++) {
+		  less
+	  }
+  }
+  
+}

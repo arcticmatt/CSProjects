@@ -1,0 +1,45 @@
+/**
+ * A class which can solve the Towers of Hanoi game.
+ * 
+ */
+public class HanoiSolver {
+  
+  private HanoiGame hanoi;
+  
+  /**
+   * Create a new HanoiSolver to solve a HanoiGame.
+   * 
+   * @param hanoi The HanoiGame to solve.
+   */
+  public HanoiSolver(HanoiGame hanoi) {
+    this.hanoi = hanoi;
+  }
+  
+  /**
+   * Solve the encapsulated HanoiGame.
+   */
+  public void solve() {
+    // TODO: Implement this!
+	System.out.println(hanoi.getNumDisks(0));
+	moveDisks(hanoi.getNumDisks(0), 0, 2, 1);
+	
+  }
+
+  /** Moves diskCount disks from the initialPeg to the finalPeg. UnusedPeg specifies
+   * the other, third, peg.
+   * **/
+  private void moveDisks(int diskCount, int initialPeg, int finalPeg, int unusedPeg) {
+	  if (diskCount == 1) {
+		  /* If we only have to move 1 disk, just move it and return. */
+		  hanoi.makeMove(initialPeg, finalPeg);
+		  return;
+	  }
+	  /* Move diskCount-1 disks to the unusedPeg, move the largest disk to the end,
+	   * and finally move the rest of the disks from the unusedPeg to the finalPeg.
+	   */
+	  moveDisks(diskCount - 1, initialPeg, unusedPeg, finalPeg);
+	  hanoi.makeMove(initialPeg, finalPeg);
+	  moveDisks(diskCount - 1, unusedPeg, finalPeg, initialPeg);
+  }
+  
+}

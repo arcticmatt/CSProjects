@@ -1,0 +1,106 @@
+/**
+ * A MergeSorter sorts arrays using the merge sort algorithm.
+ */
+public class MergeSorter extends BaseSorter {
+
+  /**
+   * Sorts an array using the merge sort algorithm.
+   * 
+   * @param array The array to be sorted.
+   */
+  protected void doSort(double[] array) {
+    // TODO: Implement this method.
+	array = mergeSort(array);
+	printArray(array);
+  }
+
+  private void printArray(double[] array) {
+	  String f = "";
+	  for (int i = 0; i < array.length; i++) {
+		  f += array[i];
+	  }
+	  System.out.println(f);
+  }
+  
+  private double[] mergeSort(double[] array) {
+	  /* Runs the merge sort on the given array, returning the
+	   * result.
+	   */
+	  if (array.length <= 1) {
+		  //if it's too short, it's already sorted
+		  return array;
+	  }
+	  //Calculate the dividing index.
+	  int divider = array.length / 2;
+	  double[] partition1 = new double[divider];
+	  double[] partition2 = new double[array.length - divider];
+	  /* now place all elements with indexes less than divider
+	   * into partition1; all others into partition2.
+	   */
+	  for (int i = 0; i < array.length; i++) {
+		  if (i < divider) {
+			  partition1[i] = array[i];
+		  } else {
+			  partition2[i - divider] = array[i];
+		  }
+	  }
+	  /* Now sort the two arrays and merge them, returning
+	   * the result.
+	   */
+	  double[] array1Sorted = mergeSort(partition1);
+	  double[] array2Sorted = mergeSort(partition2);
+	  return merge(array1Sorted, array2Sorted);
+  }
+  
+  private boolean isLessThan(double[] array1, int index1, double[] array2, int index2) {
+	  /* This is kind of a hack and should be placed in baseSorter, but I'm not turning that 
+	   * file in so I'll put it here. This subroutine compares elements from 2 different arrays.
+	   */
+	  double[] combinedArray = {array1[index1], array2[index2]};
+	  return lessThan(combinedArray, 0, 1);
+  }
+  
+  private double[] merge(double[] array1, double[] array2) {
+	  /* Merges 2 sorted arrays, and returns the result */
+	  int totalElements = array1.length + array2.length;
+	  //result is the array we'll return
+	  double[] result = new double[totalElements];
+	  //the indexes into the first array and the second array
+	  int array1Index, array2Index;
+	  array1Index = 0;
+	  array2Index = 0;
+	  /* now run through all the elements, placing the minimum of
+	   * array1 and array2 into the result.
+	   */
+	  for (int i = 0; i < totalElements; i++) {
+		  /* First check if we've already copied all the
+		   * elements from one of the arrays into result.
+		   * If so, then copy the element from the other array.
+		   */
+		  if (array2Index >= array2.length) {
+			  result[i] = array1[array1Index];
+			  array1Index++;
+			  continue;
+		  }
+		  if (array1Index >= array1.length) {
+			  result[i] = array2[array2Index];
+			  array2Index++;
+			  continue;
+		  }
+		  
+		  if (isLessThan(array1, array1Index, array2, array2Index)) {
+			  /* if the element in array1 is less than the 
+			   * one in array2, place that array1 element into result. 
+			   */
+			  result[i] = array1[array1Index];
+			  array1Index++;
+		  } else {
+			  //otherwise, place the element in array2 in result.
+			  result[i] = array2[array2Index];
+			  array2Index++;
+		  }
+	  }
+	  return result;
+  }
+  
+}
