@@ -20,16 +20,8 @@ public class BubbleSorter extends BaseSorter {
       }
     }
     
-    printArray(array);
     
   }
-  
-  private void printArray(double[] array) {
-	  String f = "";
-	  for (int i = 0; i < array.length; i++) {
-		  f += ";" + array[i];
-	  }
-	  System.out.println(f);
-  }
+ 
 
 }
