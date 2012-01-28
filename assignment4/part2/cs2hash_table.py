@@ -1,0 +1,111 @@
+# CS2 Winter 2012
+# Lab 4 - Problem 3: HashTable 
+# by Ye Lu, Dallin Akagi (2011)
+
+# Problem 3
+#
+# Separate Chain style HashTable. Each bucket should use
+# a Python List to avoid collisions. 
+#
+# The explanation in the set itself is sooper helpful.
+class HashTable:
+    def __init__(self, num_buckets):
+        self.num_buckets = num_buckets
+        #changed this
+        self.table = [[None] for i in range(num_buckets)]
+        self.keylist = []
+
+    # Adds the (key, value) pair into the hash table.
+    # If the key already has an associated value, we 
+    # update it to the new value. 
+    #
+    # Remember that our hash function returns the sum
+    # of the ASCII values of a string. We need to convert
+    # this into a valid index for our hash table somehow...
+    def add(self, (key, value)):
+        #add the new key to our key list.
+        self.keylist.append(key)
+        #first, get the table bucket.
+        bucket = self.get_bucket(key)
+        #remove the None
+        if (self.is_empty(bucket)):
+            bucket.pop()
+        #now run through the bucket's entries; if we find
+        #one, then update the value of that entry & return.
+        for entry_index in range(len(bucket)):
+            if (bucket[entry_index][0] == key):
+                bucket[entry_index] = (key, value)
+                return
+        #otherwise, just place the element into the table.
+        bucket.append((key, value))
+
+    #Is the given bucket empty?
+    def is_empty(self, bucket):
+        return bucket == [None]
+
+    #Returns the bucket associated with a given key
+    def get_bucket(self, key):
+        hash_residue = self.hash_function(key) % self.num_buckets
+        return self.table[hash_residue]
+        
+
+    # Returns the value given the key.
+    #
+    # Return value:
+    #   - Value from the key pair
+    #   - None if the key does not exist
+    def get(self, key):
+        bucket = self.get_bucket(key)
+        #check if it's empty.
+        if (self.is_empty(bucket)):
+            return None
+        #Run through all the values, searching for an element
+        #with the given key; if so, return the value.
+        for (k, v) in bucket:
+            if (k == key):
+                return v
+        #If none found, return none.
+        return None
+
+    # Removes the key and its corresponding value from the hash
+    # table.
+    #
+    # Return value:
+    #   - Value of the key pair that we remove
+    #   - None if the key does not exist
+    def remove(self, key):  
+        bucket = self.get_bucket(key)
+        if (self.is_empty(bucket)):
+            #No keys in the bucket
+            return None
+        for i in range(len(bucket)):
+            k = bucket[i][0] #key
+            v = bucket[i][1] #value
+            if (k == key):
+                #Remove the key from keylist
+                self.keylist.pop(self.keylist.index(key))
+                #remove it from the bucket
+                bucket.pop(i)
+                return v
+        #Otherwise, if we don't find anything, return None
+        return None
+            
+
+    # Returns the set of keys in the hash table
+    def get_keys(self):
+        return self.keylist
+
+    # Returns the ASCII sum of the input string
+    def hash_function(self, input):
+        sum = 0
+        for i in range(0, len(input)):
+            sum = sum + ord(input[i])
+
+        return sum
+
+    def print_table(self):
+        for i in range(0, self.num_buckets):
+            if self.table[i] != None:
+                print self.table[i], " | ",
+        print
+

@@ -1,0 +1,98 @@
+# CS2 Winter 2012
+# Lab 4 - Problem 2: Binary Search Tree
+# by Ye Lu, Dallin Akagi (2011)
+
+# Part 2.0
+#
+# Basic structure for a Binary Tree.
+# Very similar to a LinkedList node except that it has
+# two children, one for the left subtree and one for
+# the right subtree.
+#
+# For a Binary SEARCH Tree, we require that all elements
+# on the left subtree of a current node must be SMALLER
+# in value and all elements on the right subtree must
+# have equal or higher value.
+class TreeNode: #Given
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def setLeft(self, leftChild):
+        self.left = leftChild
+
+    def setRight(self, rightChild):
+        self.right = rightChild
+
+    def setValue(self, value):
+        self.value = value
+
+    def getLeft(self):
+        return self.left
+
+    def getRight(self):
+        return self.right
+
+    def getValue(self):
+        return self.value
+
+# Problem 2.1
+#
+# The binary search tree class itself.
+# Because the subtree of a BST will itself be a BST,
+# traversing through a tree can easily be done by
+# recursion. Just be sure to test for base cases and
+# when to stop. 
+#
+# Iterative solutions are equally practical for manipulating 
+# the tree. However, iterative solutions for printing
+# a tree is much more complicated than the recursive 
+# version.
+#
+# If you are planning to write a recursive function, writing
+# a separate helper function might be a good idea. Do not
+# change the headers of the functions we require you
+# to write. But you are allowed to write new functions as
+# you please.
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    # Adds a new node with the given value to the tree.
+    # Follows the rule that all values smaller will be
+    # on the left subtree and all values larger than the
+    # current will be on the right subtree.
+    #
+    # No return value needed.
+    def add(self, value):
+        '''something doing'''
+
+   # Check to see if the given value is contained within
+   # the tree.
+   #
+   # Return value:
+   #    - True if value is in the tree
+   #    - False if value is not in the tree
+    def contains(self, value): 
+       '''something doing'''
+
+    # Prints the list in a way such that we first print
+    # all the values in the left subtree. Then the value of
+    # the current node. And lastly all the values in the right
+    # subtree. This print methodology carries for all nodes.
+    #
+    #. i.e. at no matter which node we are on, we must follow
+    #   this ordering rule.
+    def print_inorder(self): 
+        '''something doing'''
+
+# Problem 2.2
+# Write your answer here::
+'''
+1) ...
+
+2) ...
+
+'''
+
