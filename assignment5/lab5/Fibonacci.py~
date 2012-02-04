@@ -1,0 +1,17 @@
+## Fibonacci Problem
+
+
+def dynamicFibonacci(n):
+    ''' This function takes in an integer n
+        It calculates the nth fibonacci number via dynamic programming.
+        The problem should be done bottom up. '''
+
+    #TODO
+
+if __name__ == "__main__":
+    x = dynamicFibonacci(18)
+    if (x == 2584):
+        print "succes"
+    else:
+        print "something isn't working"
+        
