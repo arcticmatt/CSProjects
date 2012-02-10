@@ -37,11 +37,37 @@ def findVSeam(cim):
     for x in cim.xrange():
         energy[x,0] = cim.pix[x,0]
 
+    infinity = float('inf')
     # Populate the rest of energy and path arrays
     for y in range(1,cim.height):
         for x in cim.xrange():
-            #### TODO: Fill in body of this loop.
-            pass
+            pixelEnergy = cim.pix[x, y]
+            #Check the edge cases / get the energies.
+            if (x == 0):
+                energyDown = energy[x, y-1]
+                energyRight = energy[x+1, y-1]
+                energyLeft = infinity
+            elif (x == cim.width - 1):
+                energyDown = energy[x, y-1]
+                energyRight = infinity
+                energyLeft = energy[x-1, y-1]
+            else:
+                energyDown = energy[x, y-1]
+                energyRight = energy[x+1, y-1]
+                energyLeft = energy[x-1, y-1]
+            #now figure out which gives the least energy; set the
+            #path / energy accordingly
+            minEnergy = min([energyDown, energyRight, energyLeft])
+            if (energyDown == minEnergy):
+                path[x, y] = 0
+                energy[x,y] = pixelEnergy + energyDown
+            elif (energyLeft == minEnergy):
+                path[x, y] = -1
+                energy[x, y] = pixelEnergy + energyLeft
+            else:
+                path[x, y] = 1
+                energy[x, y] = pixelEnergy + energyRight
+            
     
     # mine: minimum energy in bottom row
     # minx: x-coord of minimum energy
@@ -63,9 +89,43 @@ def findVSeam(cim):
 
 #### Write this function, It should be very similar to carveVSeam
 def insertVSeam(cim, seam):
+    print seam
     'Insert a seam into the image and returns resulting image.'
+    cimout = CImage(cim.width + 1, cim.height)
+    seamIndex = 0
+    for y in cim.yrange():
+        for x in range(0, seam[y]):
+            cimout.pix[x,y] = cim.pix[x,y]
+        #average of the surrounding pixels
+        cimout.pix[seam[y], y] = getAverage(cim, seam[y], y) 
+        for x in range(seam[y]-1, cim.width-1):
+            #copy over the pixels
+            cimout.pix[x+2, y] = cim.pix[x+1,y] 
+    return cimout
 
-    #### TODO
+def getAverage(cim, x, y):
+    #we're gonna place all the near colours into a list, and
+    #calculate the new pixel as the average of the near pixels.
+    nearColours = []
+    for dx in range(-1, 2):
+        for dy in range(-1, 2):
+            testX = x + dx
+            testY = y + dy
+            if (testX < 0 or testX >= cim.width or \
+                    testY < 0 or testY >= cim.height):
+                #invalid.
+                continue
+            #otherwise, append it.
+            nearColours.append(cim.pix[testX, testY])
+    #now return the average of all those colours.
+    rSum, gSum, bSum = 0,0,0
+    for r,g,b in nearColours:
+        rSum += r
+        gSum += g
+        bSum += b
+    elements = len(nearColours)
+    #return the average.
+    return (rSum/elements, gSum/elements, bSum/elements)
 
 def carveVSeam(cim, seam):
     'Removes a given seam from an image, and returns resulting image.'
