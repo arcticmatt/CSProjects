@@ -1,0 +1,19 @@
+/**
+ * An implementation of PendulumIntegrator that uses the backward Euler
+ * method to update Pendulums.
+ * 
+ * @author Justin Johnson
+ */
+public class BackwardEuler implements PendulumIntegrator {
+
+  /**
+   * Updates a Pendulum object using the backward Euler method.
+   * @param pendulum The Pendulum to update.
+   * @param h The timestep.
+   */
+  @Override
+  public void takeStep(Pendulum pendulum, double h) {
+    // TODO: Implement this.
+  }
+  
+}

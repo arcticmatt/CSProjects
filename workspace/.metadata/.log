@@ -1013,3 +1013,23 @@ HandlerActivation(commandId=AUTOGEN:::org.eclipse.cdt.debug.ui.FunctionBreakpoin
 HandlerActivation(commandId=AUTOGEN:::org.eclipse.cdt.debug.ui.FunctionBreakpointActions/org.eclipse.cdt.debug.internal.ui.actions.ManageFunctionBreakpointActionDelegate,
 	handler=ActionDelegateHandlerProxy(null,org.eclipse.cdt.debug.internal.ui.actions.ManageFunctionBreakpointActionDelegate),
 	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@e7d53),sourcePriority=16384)
+!SESSION 2012-02-12 10:23:16.425 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_22
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.ui.workbench 2 0 2012-02-12 10:23:28.706
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2012-02-12 10:23:28.706
+!MESSAGE Conflict for 'AUTOGEN:::org.eclipse.cdt.debug.ui.FunctionBreakpointActions/org.eclipse.cdt.debug.internal.ui.actions.ManageFunctionBreakpointActionDelegate':
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.cdt.debug.ui.FunctionBreakpointActions/org.eclipse.cdt.debug.internal.ui.actions.ManageFunctionBreakpointActionDelegate,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.cdt.debug.internal.ui.actions.ManageFunctionBreakpointActionDelegate),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@f449b8),sourcePriority=16384)
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.cdt.debug.ui.FunctionBreakpointActions/org.eclipse.cdt.debug.internal.ui.actions.ManageFunctionBreakpointActionDelegate,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.cdt.debug.internal.ui.actions.ManageFunctionBreakpointActionDelegate),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@f449b8),sourcePriority=16384)
+
+!ENTRY org.eclipse.core.resources 4 372 2012-02-12 10:23:42.200
+!MESSAGE Resource '/balanced_braces' is not open.

@@ -17,8 +17,8 @@
 <fullyQualifiedTypeName name="GraphicalSortingApplication"/>
 <fullyQualifiedTypeName name="BubbleSorter"/>
 <fullyQualifiedTypeName name="java.awt.Point"/>
-<fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="GrahamScanner"/>
 <fullyQualifiedTypeName name="LineSegment"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>

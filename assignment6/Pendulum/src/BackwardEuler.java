@@ -1,0 +1,31 @@
+/**
+ * An implementation of PendulumIntegrator that uses the backward Euler
+ * method to update Pendulums.
+ * 
+ * @author Justin Johnson
+ */
+public class BackwardEuler implements PendulumIntegrator {
+
+  /**
+   * Updates a Pendulum object using the backward Euler method.
+   * @param pendulum The Pendulum to update.
+   * @param h The timestep.
+   */
+  @Override
+  public void takeStep(Pendulum pendulum, double h) {
+	  /* I solved for theta_k+1 using the approximation that
+	   * theta ~ sin(theta) for small theta.
+	   */
+	  double theta = pendulum.getAngle();
+	  double g = pendulum.getGravity();
+	  double L = pendulum.getLength();
+	  double omega = pendulum.getVelocity();
+	  
+	  double tmp = 1 + h*h*g/L;
+	  double newTheta = (theta + h*omega) / tmp;
+	  double newOmega = omega - h*g / L * newTheta;
+	  pendulum.setVelocity(newOmega);
+	  pendulum.setAngle(newTheta);
+  }
+  
+}

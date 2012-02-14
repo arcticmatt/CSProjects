@@ -1,0 +1,19 @@
+/**
+ * An implementation of PendulumIntegrator that uses the forward Euler method
+ * to update Pendulums.
+ * 
+ * @author Justin Johnson
+ */
+public class ForwardEuler implements PendulumIntegrator {
+
+  /**
+   * Updates a Pendulum object using the forward Euler method.
+   * @param pendulum The Pendulum to update.
+   * @param h The timestep.
+   */
+  @Override
+  public void takeStep(Pendulum pendulum, double h) {
+    // TODO: Implement this.
+  }
+  
+}
