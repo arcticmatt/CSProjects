@@ -1,0 +1,21 @@
+
+/**
+ * Contains the main entry point for the Fourier project. 
+ * 
+ * @author Justin
+ *
+ */
+public class Main {
+  
+  /**
+   * Entry point for the Fourier project. This method should ensure that 
+   * NaiveFourierTransform and RecursiveFourierTransform give the same results
+   * on the same input with a reasonable amount of floating point error.
+   * 
+   * @param args Command line arguments to the program. Not used.
+   */
+  public static void main(String[] args) {
+    // TODO: Implement this.
+  }
+  
+}

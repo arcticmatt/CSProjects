@@ -1,0 +1,32 @@
+
+/**
+ * An implementation of the Fourier transform using the recursive fast Fourier
+ * transform (FFT) algorithm.
+ * 
+ * @author Justin Johnson
+ *
+ */
+public class RecursiveFourierTransform extends FourierTransform {
+
+  /**
+   * Computes the discrete Fourier transform of the input data using the FFT
+   * algorithm.
+   * @param input The complex numbers to be transformed. The length of input
+   * must be a power of two.
+   * @return An array of complex numbers containing the discrete Fourier
+   * transform of the input data.
+   */
+  public ComplexNumber[] transform(ComplexNumber[] input) {
+    int n = input.length;
+    if (!powerOfTwo(n)) {
+      throw new IllegalArgumentException("input.length must be a power of " +
+      		"2 but input.length = " + input.length);
+    }
+    
+    ComplexNumber[] output = new ComplexNumber[n];
+    // TODO: Implement this.
+    
+    return output;
+  }
+
+}

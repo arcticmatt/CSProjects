@@ -1,0 +1,200 @@
+
+/**
+ * A simple class for representing complex numbers. A ComplexNumber object is
+ * immutable. 
+ * 
+ * @author Justin Johnson
+ *
+ */
+public class ComplexNumber {
+
+  /**
+   * The complex number 1 + 0i.
+   */
+  public static final ComplexNumber ONE = new ComplexNumber(1, 0);
+  
+  /**
+   * The complex number 0 + 0i.
+   */
+  public static final ComplexNumber ZERO = new ComplexNumber(0, 0);
+  
+  /**
+   * The complex number 0 + 1i.
+   */
+  public static final ComplexNumber I = new ComplexNumber(0, 1);
+  
+  /**
+   * The complex number PI + 0i.
+   */
+  public static final ComplexNumber PI = new ComplexNumber(Math.PI, 0);
+
+  // The real and imaginary parts of this number.
+  private final double re, im;
+
+  /**
+   * Creates a new ComplexNumber with specified real and imaginary components.
+   * @param re The real component.
+   * @param im The imaginary component.
+   */
+  public ComplexNumber(double re, double im) {
+    this.re = re;
+    this.im = im;
+  }
+  
+  public ComplexNumber(ComplexNumber n) {
+	  this.re = n.re();
+	  this.im = n.im();
+  }
+  
+  /**
+   * Static factory method to create a ComplexNumber from a specified real
+   * number.
+   * @param val The real value.
+   * @return A new ComplexNumber with value val + 0i.
+   */
+  public static ComplexNumber fromReal(double val) {
+    return new ComplexNumber(val, 0);
+  }
+  
+  /**
+   * Static factory method to create a ComplexNumber in polar form.
+   * @param radius The radius.
+   * @param theta The angle.
+   */
+  public static ComplexNumber fromPolar(double radius, double theta) {
+    return getUnit(theta).times(radius);
+  }
+
+  /**
+   * Static factory method to create a ComplexNumber of unit length.
+   * @param theta The angle of the complex number.
+   */
+  public static ComplexNumber getUnit(double theta) {
+    double a = Math.cos(theta);
+    double b = Math.sin(theta);
+    return new ComplexNumber(a, b);
+  }
+  
+  /**
+   * Static factory method to create a root of unity.
+   * @param n
+   * @param k
+   * @return Returns the primitive nth root of unity to the kth power; that is
+   * e^{2 * PI * i * k / n}.
+   */
+  public static ComplexNumber getRootOfUnity(int n, int k) {
+    double theta = 2.0 * Math.PI * k / n;
+    return getUnit(theta);
+  }
+
+  /**
+   * Gets the real component of this complex number.
+   */
+  public double real() {
+    return re;
+  }
+
+  /**
+   * Gets the imaginary component of the complex number.
+   */
+  public double im() {
+    return im;
+  }
+
+  /**
+   * Returns a new complex number which is the sum of this and another 
+   * @param other The complex number to add to this.
+   * @return The sum this + other.
+   */
+  public ComplexNumber plus(ComplexNumber other) {
+    double a = this.re + other.re;
+    double b = this.im + other.im;
+    return new ComplexNumber(a, b);
+  }
+  
+  /**
+   * Returns a new complex number which is the difference of this and another
+   * complex number.
+   * @param other The complex number to subtract from this.
+   * @return The difference this - other.
+   */
+  public ComplexNumber minus(ComplexNumber other) {
+    double a = this.re - other.re;
+    double b = this.im - other.im;
+    return new ComplexNumber(a, b);
+  }
+
+  /**
+   * Returns a new complex number which is a scalar multiple of this number.
+   * @param c The scalar by which to multiply.
+   * @return The multiple c * this.
+   */
+  public ComplexNumber times(double c) {
+    return new ComplexNumber(c * re, c * im);
+  }
+
+  /**
+   * Returns a new complex number which is the product of this and another
+   * complex number.
+   * @param other The complex number by which to multiply.
+   * @return The product this * other.
+   */
+  public ComplexNumber times(ComplexNumber other) {
+    double a = this.re * other.re - this.im * other.im;
+    double b = this.re * other.im + this.im * other.re;
+    return new ComplexNumber(a, b);
+  }
+  
+  /**
+   * Returns a new complex number which is the complex conjugate of this.
+   * @return A new complex number whose value is this.re() - i * this.im().
+   */
+  public ComplexNumber star() {
+    return new ComplexNumber(re, -im);
+  }
+  
+  /**
+   * Returns the Euclidean norm of this complex number.
+   */
+  public double norm() {
+    return Math.hypot(re, im);
+  }
+
+  /**
+   * Returns a String representation of this complex number.
+   */
+  public String toString() {
+    return re + " + " + im + " * i";
+  }
+  
+  /**
+   * Static utility method to extract the real part from an array of complex
+   * numbers.
+   * @param nums An array of complex numbers.
+   * @return An an array output of type double[] such that 
+   * output[i] = nums[i].re()
+   */
+  public static double[] realPart(ComplexNumber[] nums) {
+    double[] ret = new double[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+      ret[i] = nums[i].re;
+    }
+    return ret;
+  }
+  
+  /**
+   * Static utility method to extract the real part from a two-dimensional
+   * array of complex numbers.
+   * @param nums An array of complex numbers.
+   * @return An array output of type double[][] such that
+   * output[i][j] = nums[i][j].rea()
+   */
+  public static double[][] realPart(ComplexNumber[][] nums) {
+    double[][] ret = new double[nums.length][];
+    for (int i = 0; i < nums.length; i++) {
+      ret[i] = realPart(nums[i]);
+    }
+    return ret;
+  }
+
+}
