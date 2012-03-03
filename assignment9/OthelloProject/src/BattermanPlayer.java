@@ -6,7 +6,7 @@ public class BattermanPlayer implements OthelloPlayer {
 	/* Represents the current node in the game */
 	private Node currentNode;
 	private byte ourColor;
-	
+	private byte enemyColor;
 	public BattermanPlayer() {}
 	public void init(OthelloSide side) {
 		/* Initialize the currentNode */
@@ -14,27 +14,52 @@ public class BattermanPlayer implements OthelloPlayer {
 		/* Set our color. */
 		if (side == OthelloSide.BLACK) {
 			ourColor = Constants.BLACK;
+			enemyColor = Constants.WHITE;
 		} else {
 			ourColor = Constants.WHITE;
+			enemyColor = Constants.BLACK;
 		}
 	}
 	
-	private void initializeCurrentNode() {
-		/* Initialize the currentNode */
-		currentNode = new Node();
-		long whitePieces = Masks.bitAt[28] | Masks.bitAt[35];
-		long blackPieces = Masks.bitAt[27] | Masks.bitAt[36];
-		Board b = new Board(whitePieces, blackPieces, Constants.WHITE);
-		currentNode.setBoard(b);
-	}
-	
-	public Move doMove(Move opponentsMove, long millisLeft) {
-		/* Update the current node */
-		updateCurrentNode(opponentsMove);
+	public Move generateNextMove() {
+		/** The main move generation function **/
+		
+		//SearchTree tree = new SearchTree(currentNode);
+		SearchTree.totalNodes = 0;
+		SearchTree.minMax(6, currentNode);
+		System.out.println("Examined: " + SearchTree.totalNodes);
+		Node bestNode = null;
+		int bestMove = -9999999;
+		for (Node i : currentNode.getChildren()) {
+			if (i.getScore() > bestMove) {
+				bestMove = i.getScore();
+				bestNode = i;
+			}
+		}
+		System.out.println( "Best forced score: " + bestMove);
+		int moveIndex = bestNode.getParentMove();
+		Move nextMove = indexToMove(moveIndex);
+		return nextMove; 
+		
+		
+		/*
 		MoveGen.generateChildren(currentNode);
 		int moveIndex = currentNode.getChildren().get(0).getParentMove();
 		currentNode.getChildren().get(0).print();
 		Move nextMove = indexToMove(moveIndex);
+		return nextMove;
+		*/
+	}
+	
+	
+	public Move doMove(Move opponentsMove, long millisLeft) {
+		/* Update the current node */
+		/* first, do the opponents move */
+		setCurrentNodeMovingSide(enemyColor);
+		updateCurrentNode(opponentsMove);
+		/* Now, obtain our move & update currentNode with our move */
+		setCurrentNodeMovingSide(ourColor);
+		Move nextMove = generateNextMove();
 		updateCurrentNode(nextMove);
 		return nextMove;
 	}
@@ -54,23 +79,26 @@ public class BattermanPlayer implements OthelloPlayer {
 					/* remove the parent, and currentNode is the child */
 					n.setParent(null);
 					currentNode = n;
-					MoveGen.printBitboard(currentNode.getBoard().getBlackPieces());
-					MoveGen.printBitboard(currentNode.getBoard().getWhitePieces());
 					return;
 				}
 			}
-		} else {
-			System.out.println("here");
-			/* if the move is null, the the opponent forfeited his turn;
-			* Change the currentNode's color to ours, and continue. */
-			Board oldBoard = currentNode.getBoard();
-			Board newBoard = new Board(oldBoard.getWhitePieces(),
-					oldBoard.getBlackPieces(), oldBoard.getMovingSide());
-			currentNode.setBoard(newBoard);
-			//currentNode.print();
-			System.out.println(newBoard.equalTo(oldBoard));
-			System.out.println(oldBoard.getMovingSide());
 		}
+		/* if the move is null, don't do anything. */
+		
+	}
+	
+	private void initializeCurrentNode() {
+		/* Initialize the currentNode */
+		currentNode = new Node();
+		long whitePieces = Masks.bitAt[28] | Masks.bitAt[35];
+		long blackPieces = Masks.bitAt[27] | Masks.bitAt[36];
+		Board b = new Board(whitePieces, blackPieces, Constants.BLACK);
+		currentNode.setBoard(b);
+	}
+	
+	private void setCurrentNodeMovingSide(byte x) {
+		/* Sets the current node's moving side. */
+		currentNode.getBoard().setMovingSide(x);
 	}
 	
 	private Move indexToMove(int a) {

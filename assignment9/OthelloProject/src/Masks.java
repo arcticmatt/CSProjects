@@ -5,7 +5,9 @@ public class Masks {
 	public static long notAFile = generatenotAFile();
 	public static long notHFile = generatenotHFile();
 	public static long allFiles = ~(0L);
-
+	public static long corners = bitAt[0] | bitAt[7] | bitAt[56] | bitAt[63];
+	
+	
 	private static long[] generateBitAt() {
 		/** Generates the bitAt mask **/
 		long[] bitat = new long[64];

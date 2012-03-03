@@ -20,12 +20,30 @@ public class MoveGen {
 		long whitePieces = board.getWhitePieces();
 		byte movingSide = board.getMovingSide();
 		byte idleSide = board.getIdleSide();
+		/* The board generation function is used when creating the children to avoid conditionals */
+		BoardGenerationFunction bgf ;
 		if (movingSide == Constants.WHITE) {
 			moverPieces = whitePieces;
 			idlerPieces = blackPieces;
+			/* UGLY!!!! */
+			bgf = new BoardGenerationFunction() {
+				@Override
+				public Board childBoard(long whitePieces, long blackPieces,
+						long nextMoveBoard, long killedSquares, byte idleSide) {
+					return new Board(whitePieces ^ killedSquares | nextMoveBoard, blackPieces ^ killedSquares, idleSide);
+				}
+			};
+			
 		} else {
 			moverPieces = blackPieces;
 			idlerPieces = whitePieces;
+			bgf = new BoardGenerationFunction() {
+				@Override
+				public Board childBoard(long whitePieces, long blackPieces,
+						long nextMoveBoard, long killedSquares, byte idleSide) {
+					return new Board(whitePieces ^ killedSquares, blackPieces ^ killedSquares | nextMoveBoard, idleSide);
+				}
+			};
 		}
 		
 		/* The list of Nodes containing all the children */
@@ -84,7 +102,8 @@ public class MoveGen {
 			Node child = new Node();
 			/* Set the parent & board appropriately */
 			child.setParent(n);
-			Board childBoard = new Board(whitePieces ^ killedSquares | nextMoveBoard, blackPieces ^ killedSquares, idleSide);
+			//Board childBoard = new Board(whitePieces ^ killedSquares | nextMoveBoard, blackPieces ^ killedSquares, idleSide);
+			Board childBoard = bgf.childBoard(whitePieces, blackPieces, nextMoveBoard, killedSquares, idleSide);
 			child.setBoard(childBoard);
 			/* tell the child which move created it */
 			child.setParentMove(nextMoveIndex);
@@ -94,6 +113,9 @@ public class MoveGen {
 		n.setChildren(children);
 	}
 	
+	interface BoardGenerationFunction {
+		Board childBoard(long whitePieces, long blackPieces, long nextMoveBoard, long killedSquares, byte idleSide);
+	}
 	
 	private static long getMovableSquaresUP(long attackedSquares, int delta, long mask, long free) {
 		/** Returns the squares where an attacker can move to, given the attackedSquares board.

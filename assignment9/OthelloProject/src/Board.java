@@ -31,7 +31,12 @@ public class Board {
 		return (byte)(movingSide ^ 1);
 	}
 	
-	public boolean equalTo(Board b) {
+	public void setMovingSide(byte newMovingSide) {
+		/* Set the moving side to a new value */
+		movingSide = newMovingSide;
+	}
+	
+	public boolean equals(Board b) {
 		/* Returns whether this board equals the other board */
 		return (getWhitePieces() == b.getWhitePieces() && 
 				getBlackPieces() == b.getBlackPieces() &&

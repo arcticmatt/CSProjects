@@ -10,39 +10,39 @@ public class TestGame
 
       //Uncomment this if you want to play against an AI as White.
       OthelloPlayer o2 = new OthelloDisplay();
-      OthelloGame g = new OthelloGame(p1, o2, o);
+      //OthelloGame g = new OthelloGame(p1, o2, o);
       
       //Uncomment this if you want to play against an AI as black.
       //OthelloPlayer o2 = new OthelloDisplay();
-      //OthelloGame g = new OthelloGame(o2, p1, o);
+      OthelloGame g = new OthelloGame(o2, p1, o);
       
       //Comment this if playing against an AI.
       //By default, we put two AIs against each other.
       //OthelloGame g = new OthelloGame(p1, p2, o);
       //Ulong j;
  
-      runTests();
+     // runTests();
       
-      //g.run();
+      g.run();
    }
    
    private static void runTests() {
 	   /** Testing method. **/
 	   Node testNode = new Node();
-	   long blackPieces = Masks.bitAt[28] | Masks.bitAt[35];
-	   long whitePieces = Masks.bitAt[27] | Masks.bitAt[36];
-	   Board b = new Board(whitePieces, blackPieces, Constants.WHITE);
+	   long whitePieces = Masks.bitAt[28] | Masks.bitAt[35];
+	   long blackPieces = Masks.bitAt[27] | Masks.bitAt[36];
+	   Board b = new Board(whitePieces, blackPieces, Constants.BLACK);
 	   testNode.setBoard(b);
 	   System.out.println("starting");
-	   //for (int i = 0; i < 5000000; i++) {
+	   for (int i = 0; i < 5000000; i++) {
 	   MoveGen.generateChildren(testNode);
-	   //testNode.setChildren(null);
-	   //}
+	   testNode.setChildren(null);
+	   }
 	   
 	  // System.out.println(testNode.getChildren().size());
 	   //boardTestboard = testNode.getChildren().peek().getBoard();
-	   MoveGen.printBitboard(testNode.getChildren().get(0).getBoard().getWhitePieces());
-	   MoveGen.printBitboard(testNode.getChildren().get(0).getBoard().getBlackPieces());
+	   ///MoveGen.printBitboard(testNode.getChildren().get(0).getBoard().getWhitePieces());
+	   //MoveGen.printBitboard(testNode.getChildren().get(0).getBoard().getBlackPieces());
 	   System.out.println("ending");
 	   
 	   StringFunction x = new StringFunction() {
