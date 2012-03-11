@@ -24,7 +24,6 @@ public class Node {
 		/* set the Node's board */
 		board = b;
 	}
-
 	
 	public int getAlpha() {
 		/* Returns the alpha of the node */

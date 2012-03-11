@@ -24,11 +24,6 @@ public class Board {
 		return (hash << 8) >>> 8;
 	}
 	
-	public int getPieceCount() {
-		/* Returns the number of pieces on the board */
-		return Long.bitCount(getWhitePieces() | getBlackPieces());
-	}
-	
 	public long getBlackPieces() {
 		/* Returns the black pieces on the board */
 		return blackPieces;

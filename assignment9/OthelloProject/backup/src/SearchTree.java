@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class SearchTree {
 	/** Represents a search tree. **/
@@ -6,7 +5,6 @@ public class SearchTree {
 	Node root;
 	//TranspositionTable tTable;
 	public int cutoffs = 0;
-	public int examinedNodes = 0;
 	
 	public SearchTree(Node root) {
 		/** root is the node we'll be searching **/
@@ -21,18 +19,17 @@ public class SearchTree {
 		int depth = 1;
 		Node bestNode, nextBestNode = null;
 		do {
+			root.setChildren(null);
 			root.setAlpha(-Constants.INF);
 			root.setBeta(Constants.INF);
-			root.setChildren(null);
 			bestNode = nextBestNode;
 			nextBestNode = alphaBetaBestNode(depth++, maxTime);
 		} while (System.currentTimeMillis() < maxTime);
 		System.out.println("reached depth " + depth);
 		return bestNode;
 		
-		
 		//long maxTime = System.currentTimeMillis() + 10000;
-		//return alphaBetaBestNode(9, maxTime);
+		//return alphaBetaBestNode(8, maxTime);
 	}
 	
 	private Node alphaBetaBestNode(int depth, long maxTime) {
@@ -62,8 +59,6 @@ public class SearchTree {
 			/* Time limit exceeded */
 			return;
 		}
-		examinedNodes++;
-		
 		if (depth == 0) {
 			/* If the depth is 0, set our alpha or beta according to the heuristic */
 			int score = Evaluator.evaluate(selectedNode);
@@ -77,21 +72,15 @@ public class SearchTree {
 			return;
 		}
 		
-		if (depth == 1 || selectedNode.getChildren() == null) {
-			/* Generate the children */
-			MoveGen.generateChildren(selectedNode);
-		}
+		/* Generate the children */
+		MoveGen.generateChildren(selectedNode);
 		
 		int alpha = selectedNode.getAlpha();
 		int beta = selectedNode.getBeta();
 		
-		LinkedList<Node> goodNodes = new LinkedList<Node>();
-		
 		/* If we're maximizing, run through the children until we find a cutoff */
-		Iterator<Node> nodeIterator = selectedNode.getChildren().iterator();
 		if (selectedNode.isMaximizing()) {
-			while (nodeIterator.hasNext()) {
-				Node N = nodeIterator.next();
+			for (Node N : selectedNode.getChildren()) {
 				/* Copy over the alpha / beta values */
 				N.setAlpha(alpha);
 				N.setBeta(beta);
@@ -100,11 +89,6 @@ public class SearchTree {
 				/* Check if we have a new best maximizing move */
 				if (N.getBeta() > alpha) {
 					alpha = N.getBeta();
-					/* If we get a good move, add it to our list of good nodes / remove
-					 * it from the children.
-					 */
-					goodNodes.add(N);
-					nodeIterator.remove();
 				}
 				if (alpha >= beta) {
 					/* Cutoff! */
@@ -114,8 +98,7 @@ public class SearchTree {
 			}
 			
 		} else {
-			while (nodeIterator.hasNext()) {
-				Node N = nodeIterator.next();
+			for (Node N : selectedNode.getChildren()) {
 				/* Copy over the alpha / beta values */
 				N.setAlpha(alpha);
 				N.setBeta(beta);
@@ -124,8 +107,6 @@ public class SearchTree {
 				/* Check if we have a new best maximizing move */
 				if (N.getAlpha() < beta) {
 					beta = N.getAlpha();
-					goodNodes.add(N);
-					nodeIterator.remove();
 				}
 				if (alpha >= beta) {
 					/* Cutoff! */
@@ -134,8 +115,6 @@ public class SearchTree {
 				}
 			}
 		}
-		/* Change our move ordering */
-		selectedNode.getChildren().addAll(0, goodNodes);
 		/* Set the alpha / beta values to the values generated. */
 		selectedNode.setAlpha(alpha);
 		selectedNode.setBeta(beta);

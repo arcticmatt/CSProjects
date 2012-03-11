@@ -7,7 +7,6 @@ public class BattermanPlayer implements OthelloPlayer {
 	private Node currentNode;
 	private byte ourColor;
 	private byte enemyColor;
-	
 	public BattermanPlayer() {}
 	public void init(OthelloSide side) {
 		/* Initialize the currentNode */
@@ -23,16 +22,11 @@ public class BattermanPlayer implements OthelloPlayer {
 		}
 	}
 	
-	public Move generateNextMove(long millisLeft) {
-		/** The main move generation function. millisLeft indicates the number
-		 * of remaining milliseconds in the game. **/
+	public Move generateNextMove() {
+		/** The main move generation function **/
 		SearchTree sTree = new SearchTree(currentNode);
-		/* Get the amount of time for analyzing the board.
-		 */
-		int timeForMove = TimeHandler.timeForMove(currentNode.getBoard(), millisLeft);
-		Node bestNode = sTree.alphaBetaWithTimeLimit(timeForMove);
+		Node bestNode = sTree.alphaBetaWithTimeLimit(15);
 		System.out.println("Cutoffs: " + sTree.cutoffs);
-		//System.out.println("Examined Nodes: " + sTree.examinedNodes);
 		//System.out.println( "Best forced score: " + currentNode.getBeta());
 		
 		if (bestNode.wasCreatedByPass()) {
@@ -50,7 +44,6 @@ public class BattermanPlayer implements OthelloPlayer {
 	
 	
 	public Move doMove(Move opponentsMove, long millisLeft) {
-		System.out.println("time left: " + millisLeft);
 		/* Update the current node */
 		/* first, do the opponents move */
 		setCurrentNodeMovingSide(enemyColor);
@@ -60,7 +53,7 @@ public class BattermanPlayer implements OthelloPlayer {
 		//currentNode.print();
 		/* Now, obtain our move & update currentNode with our move */
 		setCurrentNodeMovingSide(ourColor);
-		Move nextMove = generateNextMove(millisLeft);
+		Move nextMove = generateNextMove();
 		if (nextMove != null) {
 			updateCurrentNodeWithMove(nextMove);
 		}
