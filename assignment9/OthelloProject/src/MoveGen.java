@@ -7,7 +7,6 @@ public class MoveGen {
 		 * them appropriately.
 		 **/
 		
-		
 		/* moverPieces are the pieces of the side that is moving; idlerPieces
 		 * those of the side which is not moving.
 		 */
@@ -30,7 +29,7 @@ public class MoveGen {
 				@Override
 				public Board childBoard(long whitePieces, long blackPieces,
 						long nextMoveBoard, long killedSquares, byte idleSide) {
-					return new Board(whitePieces ^ killedSquares | nextMoveBoard, blackPieces ^ killedSquares, idleSide);
+					return new Board((whitePieces ^ killedSquares) | nextMoveBoard, blackPieces ^ killedSquares, idleSide);
 				}
 			};
 			
@@ -41,7 +40,7 @@ public class MoveGen {
 				@Override
 				public Board childBoard(long whitePieces, long blackPieces,
 						long nextMoveBoard, long killedSquares, byte idleSide) {
-					return new Board(whitePieces ^ killedSquares, blackPieces ^ killedSquares | nextMoveBoard, idleSide);
+					return new Board(whitePieces ^ killedSquares, (blackPieces ^ killedSquares) | nextMoveBoard, idleSide);
 				}
 			};
 		}
@@ -78,9 +77,12 @@ public class MoveGen {
 		long attackedSquaresNW = getAttackedPiecesUP(moverPieces, idlerPieces, Constants.NW, Masks.notAFile);
 		movableSquares |= getMovableSquaresUP(attackedSquaresNW, Constants.NW, Masks.notAFile, freeSquares);
 		
-		//printBitboard(attackedSquaresN);
-		
+		/* foundChildren stores whether any possible moves were found; if none were found, add the /pass/ move
+		 * to the list.
+		 */
+		boolean foundChildren = false;
 		while (movableSquares != 0L) {
+			foundChildren = true;
 			/* Get the index of the next square we can move to. */
 			int nextMoveIndex = BSF(movableSquares);
 			/* Get a board consisting of only that piece, and remove it from movableSquares */
@@ -102,11 +104,20 @@ public class MoveGen {
 			Node child = new Node();
 			/* Set the parent & board appropriately */
 			child.setParent(n);
-			//Board childBoard = new Board(whitePieces ^ killedSquares | nextMoveBoard, blackPieces ^ killedSquares, idleSide);
 			Board childBoard = bgf.childBoard(whitePieces, blackPieces, nextMoveBoard, killedSquares, idleSide);
 			child.setBoard(childBoard);
 			/* tell the child which move created it */
 			child.setParentMove(nextMoveIndex);
+			children.add(child);
+		}
+		/* if we didn't find any children, add the /pass/ move */
+		if (!foundChildren) {
+			Node child = new Node();
+			child.setParent(n);
+			/* Just change the moving side. */
+			Board childBoard = new Board(whitePieces, blackPieces, idleSide);
+			child.setCreatedByPass(true);
+			child.setBoard(childBoard);
 			children.add(child);
 		}
 		/* finally, after we get generate the children, set the original node's children appropriately. */
@@ -126,7 +137,7 @@ public class MoveGen {
 	private static long getMovableSquaresDOWN(long attackedSquares, int delta, long mask, long free) {
 		/** Returns the squares where an attacker can move to, given the attackedSquares board.
 		 *  Bits are shifted to the RIGHT. **/
-		return ((attackedSquares & mask) >> delta) & free;
+		return ((attackedSquares & mask) >>> delta) & free;
 	}
 	
 	private static long getAttackedPiecesUP(long moverPieces, long idlerPieces, int delta, long mask) {
@@ -155,13 +166,13 @@ public class MoveGen {
 		**/
 		long moves = moverPieces;
 		/* We won't put it in a for-loop to avoid branching */
-		moves = ((moves & mask) >> delta) & idlerPieces;
-		moves |= ((moves & mask) >> delta) & idlerPieces;
-		moves |= ((moves & mask) >> delta) & idlerPieces;
-		moves |= ((moves & mask) >> delta) & idlerPieces;
-		moves |= ((moves & mask) >> delta) & idlerPieces;
-		moves |= ((moves & mask) >> delta) & idlerPieces;
-		moves |= ((moves & mask) >> delta) & idlerPieces;
+		moves = ((moves & mask) >>> delta) & idlerPieces;
+		moves |= ((moves & mask) >>> delta) & idlerPieces;
+		moves |= ((moves & mask) >>> delta) & idlerPieces;
+		moves |= ((moves & mask) >>> delta) & idlerPieces;
+		moves |= ((moves & mask) >>> delta) & idlerPieces;
+		moves |= ((moves & mask) >>> delta) & idlerPieces;
+		moves |= ((moves & mask) >>> delta) & idlerPieces;
 		return moves;
 	}
 	

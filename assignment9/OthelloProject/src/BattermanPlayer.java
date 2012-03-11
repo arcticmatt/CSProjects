@@ -11,6 +11,7 @@ public class BattermanPlayer implements OthelloPlayer {
 	public void init(OthelloSide side) {
 		/* Initialize the currentNode */
 		initializeCurrentNode();
+		System.out.println(side);
 		/* Set our color. */
 		if (side == OthelloSide.BLACK) {
 			ourColor = Constants.BLACK;
@@ -23,32 +24,21 @@ public class BattermanPlayer implements OthelloPlayer {
 	
 	public Move generateNextMove() {
 		/** The main move generation function **/
+		SearchTree sTree = new SearchTree(currentNode);
+		Node bestNode = sTree.alphaBetaWithTimeLimit(500);
+		System.out.println("Cutoffs: " + sTree.cutoffs);
+		//System.out.println( "Best forced score: " + currentNode.getBeta());
 		
-		//SearchTree tree = new SearchTree(currentNode);
-		SearchTree.totalNodes = 0;
-		SearchTree.minMax(6, currentNode);
-		System.out.println("Examined: " + SearchTree.totalNodes);
-		Node bestNode = null;
-		int bestMove = -9999999;
-		for (Node i : currentNode.getChildren()) {
-			if (i.getScore() > bestMove) {
-				bestMove = i.getScore();
-				bestNode = i;
-			}
+		if (bestNode.wasCreatedByPass()) {
+			/* If the best move was a passing move, 
+			 * return null. */
+			System.out.println("Passing");
+			return null;
 		}
-		System.out.println( "Best forced score: " + bestMove);
 		int moveIndex = bestNode.getParentMove();
 		Move nextMove = indexToMove(moveIndex);
 		return nextMove; 
 		
-		
-		/*
-		MoveGen.generateChildren(currentNode);
-		int moveIndex = currentNode.getChildren().get(0).getParentMove();
-		currentNode.getChildren().get(0).print();
-		Move nextMove = indexToMove(moveIndex);
-		return nextMove;
-		*/
 	}
 	
 	
@@ -56,36 +46,44 @@ public class BattermanPlayer implements OthelloPlayer {
 		/* Update the current node */
 		/* first, do the opponents move */
 		setCurrentNodeMovingSide(enemyColor);
-		updateCurrentNode(opponentsMove);
+		if (opponentsMove != null) {
+			updateCurrentNodeWithMove(opponentsMove);
+		}
+		currentNode.print();
 		/* Now, obtain our move & update currentNode with our move */
 		setCurrentNodeMovingSide(ourColor);
 		Move nextMove = generateNextMove();
-		updateCurrentNode(nextMove);
+		if (nextMove != null) {
+			updateCurrentNodeWithMove(nextMove);
+		}
+		System.out.println("I am playing " + nextMove);
+		currentNode.print();
+		//System.out.println("Hash: " + currentNode.getBoard().getHash());
 		return nextMove;
 	}
 	
-	private void updateCurrentNode(Move m) {
+	private void updateCurrentNodeWithMove(Move m) {
 		/** Updates the current node given a move. **/
-		/* if the move isn't null, then update currentNode accordingly */
-		if (m != null) {
-			/* First, generate the children of the current node */
-			MoveGen.generateChildren(currentNode);
-			/* Now loop through all the children until we identify the one
-			 * associated with the move.
-			 */
-			int moveIndex = moveToIndex(m);
-			for (Node n : currentNode.getChildren()) {
-				if (n.getParentMove() == moveIndex) {
-					/* remove the parent, and currentNode is the child */
-					n.setParent(null);
-					currentNode = n;
-					return;
-				}
+		/* First, generate the children of the current node */
+		MoveGen.generateChildren(currentNode);
+		/* Now loop through all the children until we identify the one
+		 * associated with the move.
+		 */
+		int moveIndex = moveToIndex(m);
+		for (Node n : currentNode.getChildren()) {
+			if (n.getParentMove() == moveIndex) {
+				/* remove the parent, and currentNode is the child */
+				n.setParent(null);
+				currentNode = n;
+				//currentNode.print();
+				return;
 			}
 		}
-		/* if the move is null, don't do anything. */
 		
 	}
+		/* if the move is null, don't do anything. */
+		
+
 	
 	private void initializeCurrentNode() {
 		/* Initialize the currentNode */

@@ -6,28 +6,41 @@ public class TestGame
 	  // Replace p1 and p2 with constructors for AIs you want to test.
       OthelloPlayer p1 = new BattermanPlayer();
       //OthelloPlayer p2 = new ConstantTimePlayer();
+      OthelloPlayer p2 = new BetterPlayer();
       OthelloObserver o = new OthelloDisplay();
-
+      
       //Uncomment this if you want to play against an AI as White.
       OthelloPlayer o2 = new OthelloDisplay();
-      //OthelloGame g = new OthelloGame(p1, o2, o);
+      OthelloGame g = new OthelloGame(p1, p2, o);
       
       //Uncomment this if you want to play against an AI as black.
       //OthelloPlayer o2 = new OthelloDisplay();
-      OthelloGame g = new OthelloGame(o2, p1, o);
+      //OthelloGame g = new OthelloGame(p1, p2, o);
       
       //Comment this if playing against an AI.
       //By default, we put two AIs against each other.
       //OthelloGame g = new OthelloGame(p1, p2, o);
       //Ulong j;
  
+     // System.out.println((1L << 63) << 8);
      // runTests();
-      
+   //   MoveGen.printBitboard(Masks.bitAt[63] >>> 4);
+      long k = (1L << 37) | 8;
+      int i = 0;
+      i ^= k;
+      System.out.println(i);
       g.run();
+      //runTests();
    }
    
    private static void runTests() {
 	   /** Testing method. **/
+	   long x = System.currentTimeMillis();
+	   System.out.println(System.currentTimeMillis());
+	   while (System.currentTimeMillis() - x < 1000) { }
+	   System.out.println(System.currentTimeMillis());
+	   
+	   /*
 	   Node testNode = new Node();
 	   long whitePieces = Masks.bitAt[28] | Masks.bitAt[35];
 	   long blackPieces = Masks.bitAt[27] | Masks.bitAt[36];
@@ -51,11 +64,11 @@ public class TestGame
 		public int function(String param) {
 			// TODO Auto-generated method stub
 			return 5;
-		}
+		} 
 	};
 	  
 	System.out.println(x.function(""));
-	
+	*/
    }
    
    interface StringFunction {

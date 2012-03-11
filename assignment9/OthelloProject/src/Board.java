@@ -16,6 +16,14 @@ public class Board {
 		return whitePieces;
 	}
 	
+	public int getHash() {
+		/** Returns the 3 byte hash of the board **/
+		long allPieces = ((getBlackPieces() >>> 60) | (getBlackPieces() << 4)) ^ getWhitePieces();
+		int hash = (int)movingSide << 6;
+		hash ^= allPieces ^ (allPieces >>> 24) ^ (allPieces >>> 48);
+		return (hash << 8) >>> 8;
+	}
+	
 	public long getBlackPieces() {
 		/* Returns the black pieces on the board */
 		return blackPieces;
