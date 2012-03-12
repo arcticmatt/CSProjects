@@ -6,7 +6,31 @@ public class Masks {
 	public static long notHFile = generatenotHFile();
 	public static long allFiles = ~(0L);
 	public static long corners = bitAt[0] | bitAt[7] | bitAt[56] | bitAt[63];
+	public static long notFirstRank = generateNotFirstRank();
+	public static long notLastRank = generateNotLastRank();
 	
+	private static long generateNotFirstRank() {
+		/** Generates the notFirstRank mask **/
+		long output = 0L;
+		for (int i = 0; i < 64; i++) {
+			if (i / 8 != 0) {
+				output |= bitAt[i];
+			}
+		}
+		
+		return output;
+	}
+	
+	private static long generateNotLastRank() {
+		/** Generates the notLastRank mask **/
+		long output = 0L;
+		for (int i = 0; i < 64; i++) {
+			if (i / 8 != 7) {
+				output |= bitAt[i];
+			}
+		}
+		return output;
+	}
 	
 	private static long[] generateBitAt() {
 		/** Generates the bitAt mask **/

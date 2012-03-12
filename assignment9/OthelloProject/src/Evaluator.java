@@ -8,7 +8,11 @@ public class Evaluator {
 		int pieceDifferential = Long.bitCount(whitePieces) - Long.bitCount(blackPieces);
 		int mobilityDifferential = MoveGen.moveCount(whitePieces, blackPieces) - MoveGen.moveCount(blackPieces, whitePieces);
 		int cornerDifferential = Long.bitCount(whitePieces & Masks.corners) - Long.bitCount(blackPieces & Masks.corners);
-		return 7*cornerDifferential + pieceDifferential + 2*mobilityDifferential;
+		int frontierDifferential = MoveGen.frontierSquaresCount(whitePieces, blackPieces) - MoveGen.frontierSquaresCount(blackPieces, whitePieces);
+		if ((Long.bitCount(whitePieces) + Long.bitCount(blackPieces)) == 64) {
+			return pieceDifferential;
+		}
+		return 28*cornerDifferential + 4*pieceDifferential + 8*mobilityDifferential - frontierDifferential;
 	}
 	
 	

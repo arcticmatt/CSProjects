@@ -125,6 +125,21 @@ public class MoveGen {
 		n.setChildren(children);
 	}
 	
+	public static int frontierSquaresCount(long moverPieces, long idlerPieces) {
+		long freeSquares = ~(moverPieces | idlerPieces);
+		long frontierSquares = 0L;
+		long notAHFiles = Masks.notAFile & Masks.notHFile;
+		long notFirstLastRanks = Masks.notFirstRank & Masks.notLastRank;
+		frontierSquares |= (moverPieces & notFirstLastRanks) << Constants.N;
+		frontierSquares |= (moverPieces & notAHFiles & notFirstLastRanks) << Constants.NE;
+		frontierSquares |= (moverPieces & notAHFiles) << Constants.E;
+		frontierSquares |= (moverPieces & notAHFiles & notFirstLastRanks) >>> Constants.SE;
+		frontierSquares |= (moverPieces & notFirstLastRanks) >>> Constants.S;
+		frontierSquares |= (moverPieces & notFirstLastRanks & notAHFiles) >>> Constants.SW;
+		frontierSquares |= (moverPieces & notAHFiles) >>> Constants.W;
+		frontierSquares |= (moverPieces & notAHFiles & notFirstLastRanks) << Constants.NW;
+		return Long.bitCount(frontierSquares & freeSquares);
+	}
 	
 	public static int moveCount(long moverPieces, long idlerPieces) {
 		/* Returns the number of moves for the moverPieces */

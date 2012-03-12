@@ -26,7 +26,7 @@ public class SearchTree {
 			root.setChildren(null);
 			bestNode = nextBestNode;
 			nextBestNode = alphaBetaBestNode(depth++, maxTime);
-		} while (System.currentTimeMillis() < maxTime);
+		} while (System.currentTimeMillis() < maxTime && depth < Constants.MAXDEPTH);
 		System.out.println("reached depth " + depth);
 		return bestNode;
 		

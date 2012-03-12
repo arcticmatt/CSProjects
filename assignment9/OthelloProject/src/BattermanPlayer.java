@@ -1,6 +1,5 @@
 
 
-
 public class BattermanPlayer implements OthelloPlayer {
 	
 	/* Represents the current node in the game */
@@ -65,8 +64,7 @@ public class BattermanPlayer implements OthelloPlayer {
 			updateCurrentNodeWithMove(nextMove);
 		}
 		System.out.println("I am playing " + nextMove);
-		//currentNode.print();
-		//System.out.println("Hash: " + currentNode.getBoard().getHash());
+		
 		return nextMove;
 	}
 	
