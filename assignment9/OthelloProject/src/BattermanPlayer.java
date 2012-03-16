@@ -3,7 +3,7 @@
 public class BattermanPlayer implements OthelloPlayer {
 	
 	/* Represents the current node in the game */
-	private Node currentNode;
+	private BattermanNode currentNode;
 	private byte ourColor;
 	private byte enemyColor;
 	
@@ -14,22 +14,22 @@ public class BattermanPlayer implements OthelloPlayer {
 		System.out.println(side);
 		/* Set our color. */
 		if (side == OthelloSide.BLACK) {
-			ourColor = Constants.BLACK;
-			enemyColor = Constants.WHITE;
+			ourColor = BattermanConstants.BLACK;
+			enemyColor = BattermanConstants.WHITE;
 		} else {
-			ourColor = Constants.WHITE;
-			enemyColor = Constants.BLACK;
+			ourColor = BattermanConstants.WHITE;
+			enemyColor = BattermanConstants.BLACK;
 		}
 	}
 	
 	public Move generateNextMove(long millisLeft) {
 		/** The main move generation function. millisLeft indicates the number
 		 * of remaining milliseconds in the game. **/
-		SearchTree sTree = new SearchTree(currentNode);
+		BattermanSearchTree sTree = new BattermanSearchTree(currentNode);
 		/* Get the amount of time for analyzing the board.
 		 */
-		int timeForMove = TimeHandler.timeForMove(currentNode.getBoard(), millisLeft);
-		Node bestNode = sTree.alphaBetaWithTimeLimit(timeForMove);
+		int timeForMove = BattermanTimeHandler.timeForMove(currentNode.getBoard(), millisLeft);
+		BattermanNode bestNode = sTree.alphaBetaWithTimeLimit(timeForMove);
 		System.out.println("Cutoffs: " + sTree.cutoffs);
 		//System.out.println("Examined Nodes: " + sTree.examinedNodes);
 		//System.out.println( "Best forced score: " + currentNode.getBeta());
@@ -71,12 +71,12 @@ public class BattermanPlayer implements OthelloPlayer {
 	private void updateCurrentNodeWithMove(Move m) {
 		/** Updates the current node given a move. **/
 		/* First, generate the children of the current node */
-		MoveGen.generateChildren(currentNode);
+		BattermanMoveGen.generateChildren(currentNode);
 		/* Now loop through all the children until we identify the one
 		 * associated with the move.
 		 */
 		int moveIndex = moveToIndex(m);
-		for (Node n : currentNode.getChildren()) {
+		for (BattermanNode n : currentNode.getChildren()) {
 			if (n.getParentMove() == moveIndex) {
 				/* remove the parent, and currentNode is the child */
 				n.setParent(null);
@@ -93,10 +93,10 @@ public class BattermanPlayer implements OthelloPlayer {
 	
 	private void initializeCurrentNode() {
 		/* Initialize the currentNode */
-		currentNode = new Node();
-		long whitePieces = Masks.bitAt[28] | Masks.bitAt[35];
-		long blackPieces = Masks.bitAt[27] | Masks.bitAt[36];
-		Board b = new Board(whitePieces, blackPieces, Constants.BLACK);
+		currentNode = new BattermanNode();
+		long whitePieces = BattermanMasks.bitAt[28] | BattermanMasks.bitAt[35];
+		long blackPieces = BattermanMasks.bitAt[27] | BattermanMasks.bitAt[36];
+		BattermanBoard b = new BattermanBoard(whitePieces, blackPieces, BattermanConstants.BLACK);
 		currentNode.setBoard(b);
 	}
 	

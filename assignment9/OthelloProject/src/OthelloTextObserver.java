@@ -20,17 +20,9 @@ public class OthelloTextObserver implements OthelloObserver
       player = player.opposite();
    }
 
-   public boolean whiteWon() {
-	   return (result.getWinner() == OthelloSide.WHITE);
-   }
-   
-   public boolean blackWon() {
-	   return (result.getWinner() == OthelloSide.BLACK);
-   }
    
    public void OnGameOver(OthelloResult r)
    {
-	   result = r;
       System.out.println("Game result: " + r);
 
       // If there was a runtime error, print the stack trace
